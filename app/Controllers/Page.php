@@ -2,9 +2,9 @@
 
 class Page extends BaseController
 {
-	public function Oprec()
+	public function Homepage()
 	{
-		return view('publics/oprec/oprec');
+		return view('publics/homepage/landing');
 	}
 
 	public function Login()
