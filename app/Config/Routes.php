@@ -33,14 +33,13 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
-$routes->get('/', 'Page::Oprec');
+$routes->get('/', 'Page::Homepage');
 
 $routes->add('/hooman','Admin::Login');
 $routes->get('/dasboard','Admin::Dasboard',['filter' => 'auth']);
 $routes->add('/dasboard/oprec','Admin::Oprec',['filter' => 'auth']);
 $routes->add('/dasboard/edit-data-panit/(:any)','Admin::EditDataPanit/$1',['filter' => 'auth']);
 $routes->get('/dasboard/delete-data-panit/(:any)','Admin::DeleteDataPanit/$1',['filter' => 'auth']);
-$routes->add('/oprec-result','User::OprecResult');
 $routes->get('/logout','Admin::Logout');
 $routes->get('/about','User::About');
 
