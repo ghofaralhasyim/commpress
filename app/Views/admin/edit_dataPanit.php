@@ -1,4 +1,4 @@
-<?= $this->extend('admin/dasboard') ?>
+<?= $this->extend('/admin/dashboard') ?>
 <?= $this->section('content') ?>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
@@ -49,7 +49,7 @@
                                 <option <?php if(!strcmp($dataPanit['divisi'],'Perlengkapan')){echo 'selected';} ?> value="Perlengkapan">Perlengkapan</option>
                             </select>
                         </div>
-                        <button class="btn btn-success mt-3" style="margin-right: 5px;" type="submit">Save</button><a href="<?= base_url();?>/dasboard/oprec" class="btn btn-danger mt-3">Back</a>
+                        <button class="btn btn-success mt-3" style="margin-right: 5px;" type="submit">Save</button><a href="<?= base_url();?>/dashboard/oprec" class="btn btn-danger mt-3">Back</a>
                     </form>
                 </div>
             </div>

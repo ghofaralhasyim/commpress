@@ -16,11 +16,19 @@
 }
 
 .text-red {
-  color: #ff320a;
+  color: #c96262;
 }
 
 .bg-red {
-  background-color: #ff320a;
+  background-color: #c96262;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.bg-white {
+  background-color: #fff;
 }
 
 .text-small {
@@ -29,6 +37,58 @@
 
 .text-grey {
   color: #a0a0a0 !important;
+}
+
+.f--bold {
+  font-weight: bold;
+}
+
+.f--light {
+  font-weight: lighter;
+}
+
+.f-italiana {
+  font-family: "Italiana", serif;
+}
+
+.f-12 {
+  font-size: 0.75em;
+}
+
+.f-14 {
+  font-size: 0.875em;
+}
+
+.f-16 {
+  font-size: 1em;
+}
+
+.f-18 {
+  font-size: 1.125em;
+}
+
+.f-20 {
+  font-size: 1.25em;
+}
+
+.f-22 {
+  font-size: 1.375em;
+}
+
+.f-32 {
+  font-size: 2em;
+}
+
+.f-24 {
+  font-size: 1.5em;
+}
+
+.f-30 {
+  font-size: 1.875em;
+}
+
+.f-36 {
+  font-size: 2.25em;
 }
 
 .text-dark {
@@ -48,11 +108,19 @@
 }
 
 .text-red {
-  color: #ff320a;
+  color: #c96262;
 }
 
 .bg-red {
-  background-color: #ff320a;
+  background-color: #c96262;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.bg-white {
+  background-color: #fff;
 }
 
 .flex {
@@ -186,6 +254,12 @@
   font-size: 80%;
 }
 
+@media screen and (min-width: 64em) {
+  .mobile-only {
+    display: none;
+  }
+}
+
 .bg-grain {
   background: url("../img/bg-grain-1-mobile.jpg");
   background-repeat: no-repeat;
@@ -247,7 +321,7 @@
 
 .col-gap-0 {
   -moz-column-gap: 0px;
-       column-gap: 0px;
+  column-gap: 0px;
 }
 
 .row-gap-0 {
@@ -302,7 +376,7 @@
 
 .col-gap-2 {
   -moz-column-gap: 2px;
-       column-gap: 2px;
+  column-gap: 2px;
 }
 
 .row-gap-2 {
@@ -357,7 +431,7 @@
 
 .col-gap-4 {
   -moz-column-gap: 4px;
-       column-gap: 4px;
+  column-gap: 4px;
 }
 
 .row-gap-4 {
@@ -412,7 +486,7 @@
 
 .col-gap-8 {
   -moz-column-gap: 8px;
-       column-gap: 8px;
+  column-gap: 8px;
 }
 
 .row-gap-8 {
@@ -467,7 +541,7 @@
 
 .col-gap-12 {
   -moz-column-gap: 12px;
-       column-gap: 12px;
+  column-gap: 12px;
 }
 
 .row-gap-12 {
@@ -522,7 +596,7 @@
 
 .col-gap-16 {
   -moz-column-gap: 16px;
-       column-gap: 16px;
+  column-gap: 16px;
 }
 
 .row-gap-16 {
@@ -577,7 +651,7 @@
 
 .col-gap-18 {
   -moz-column-gap: 18px;
-       column-gap: 18px;
+  column-gap: 18px;
 }
 
 .row-gap-18 {
@@ -632,7 +706,7 @@
 
 .col-gap-20 {
   -moz-column-gap: 20px;
-       column-gap: 20px;
+  column-gap: 20px;
 }
 
 .row-gap-20 {
@@ -687,7 +761,7 @@
 
 .col-gap-24 {
   -moz-column-gap: 24px;
-       column-gap: 24px;
+  column-gap: 24px;
 }
 
 .row-gap-24 {
@@ -742,7 +816,7 @@
 
 .col-gap-28 {
   -moz-column-gap: 28px;
-       column-gap: 28px;
+  column-gap: 28px;
 }
 
 .row-gap-28 {
@@ -797,7 +871,7 @@
 
 .col-gap-32 {
   -moz-column-gap: 32px;
-       column-gap: 32px;
+  column-gap: 32px;
 }
 
 .row-gap-32 {
@@ -852,7 +926,7 @@
 
 .col-gap-36 {
   -moz-column-gap: 36px;
-       column-gap: 36px;
+  column-gap: 36px;
 }
 
 .row-gap-36 {
@@ -907,7 +981,7 @@
 
 .col-gap-40 {
   -moz-column-gap: 40px;
-       column-gap: 40px;
+  column-gap: 40px;
 }
 
 .row-gap-40 {
@@ -962,7 +1036,7 @@
 
 .col-gap-48 {
   -moz-column-gap: 48px;
-       column-gap: 48px;
+  column-gap: 48px;
 }
 
 .row-gap-48 {
@@ -1017,7 +1091,7 @@
 
 .col-gap-56 {
   -moz-column-gap: 56px;
-       column-gap: 56px;
+  column-gap: 56px;
 }
 
 .row-gap-56 {
@@ -1072,11 +1146,37 @@
 
 .col-gap-64 {
   -moz-column-gap: 64px;
-       column-gap: 64px;
+  column-gap: 64px;
 }
 
 .row-gap-64 {
   row-gap: 64px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-grab {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.cursor-grabbing {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+.cursor-move {
+  cursor: move;
+}
+
+.cursor-zoom-in {
+  cursor: zoom-in;
+}
+
+.cursor-zoom-out {
+  cursor: zoom-out;
 }
 
 .form-input {
@@ -1090,7 +1190,7 @@
   font-weight: 400;
 }
 .form-input:focus {
-  border-color: #ff5d3d;
+  border-color: #d68888;
   outline: none;
 }
 .form-input[disabled] {
@@ -1103,7 +1203,9 @@
   opacity: 0.5;
 }
 
-.button, .button-badge {
+.button,
+.button-primary,
+.button-badge {
   display: inline-block;
   padding: 9px 24px;
   border: none;
@@ -1114,9 +1216,9 @@
   vertical-align: middle;
   cursor: pointer;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-weight: 600;
 }
 
@@ -1129,6 +1231,17 @@
   max-width: 360px;
   font-size: 24px;
   color: #fff;
+}
+
+.button-primary {
+  background-color: #c96262;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;
+  font-family: "Poppins-Light", sans-serif;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .text-dark {
@@ -1148,11 +1261,19 @@
 }
 
 .text-red {
-  color: #ff320a;
+  color: #c96262;
 }
 
 .bg-red {
-  background-color: #ff320a;
+  background-color: #c96262;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.bg-white {
+  background-color: #fff;
 }
 
 .footer {
@@ -1227,27 +1348,18 @@
   max-width: 4em;
 }
 
-.login {
-  min-height: 80vh;
-}
-.login .container {
-  height: 80vh;
-}
-.login-wrapper {
-  background: #fff;
-  border-radius: 6px;
-  position: relative;
-  top: 10%;
-  width: 100%;
-  min-height: 300px;
-  max-width: 620px;
-  padding: 24px 50px 50px 50px;
-  box-shadow: 2.1px 1.7px 7.9px rgba(0, 0, 0, 0.035), 6.9px 5.8px 18px rgba(0, 0, 0, 0.05);
-}
-
 @font-face {
   font-family: "Poppins-Light";
-  src: url("../fonts/Poppins-Light.woff2") format("woff2"), url("../fonts/Poppins-Light.woff2") format("woff");
+  src: url("../fonts/Poppins-Light.woff2") format("woff2"),
+    url("../fonts/Poppins-Light.woff2") format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Italiana";
+  src: url("../fonts/Italiana-Regular.woff2") format("woff2"),
+    url("../fonts/Italiana-Regular.woff") format("woff");
   font-weight: 200;
   font-style: normal;
   font-display: swap;
@@ -1339,7 +1451,7 @@ body {
     display: flex;
     flex-direction: row;
     -moz-column-gap: 1.2em;
-         column-gap: 1.2em;
+    column-gap: 1.2em;
     padding: 0;
   }
 }
@@ -1394,4 +1506,4 @@ body {
   .desktop-only {
     display: block;
   }
-}/*# sourceMappingURL=sign-in-style.css.map */
+} /*# sourceMappingURL=style.css.map */

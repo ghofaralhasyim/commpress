@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comm-press Recruitment</title>
 
-    <link href="<?= base_url('assets/stylesheets/homepage.css'); ?>" rel="stylesheet" />
+    <link href="<?= base_url('assets/stylesheets/homepage-style.css'); ?>" rel="stylesheet" />
+    <link href="<?= base_url('assets/stylesheets/base-style.css'); ?>" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>

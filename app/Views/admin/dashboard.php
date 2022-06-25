@@ -21,10 +21,10 @@
                 </div>
                 
                 <div class="sideNav__menu">
-                    <a style="text-decoration: none;" href="<?php base_url() ?>/dasboard/oprec" class="sideNav__link <?php if(!strcmp($url,"dasboard/oprec")){echo 'active';} ?>">
+                    <a style="text-decoration: none;" href="<?php base_url() ?>/dashboard/oprec" class="sideNav__link <?php if(!strcmp($url,"dashboard/oprec")){echo 'active';} ?>">
                         <div class="sideNav__icon"><i class="ri-user-3-line"></i><span> Oprec</span></div>
                     </a>
-                    <a style="text-decoration: none;" href="<?php base_url() ?>/dasboard" class="sideNav__link <?php if(!strcmp($url,"dasboard")){echo 'active';} ?>">
+                    <a style="text-decoration: none;" href="<?php base_url() ?>/dashboard" class="sideNav__link <?php if(!strcmp($url,"dashboard")){echo 'active';} ?>">
                         <div class="sideNav__icon"><i class="ri-edit-2-line"></i><span> Registration</span></div>
                     </a>
                 </div>
@@ -52,7 +52,6 @@
         </section>
     </div>
 </body>
-    
     <script language="JavaScript" type="text/javascript">
         const toggler = document.getElementById('nav-toggler'),
                     sidebar = document.getElementById('sidebar'),

@@ -3,7 +3,7 @@
 use App\Models\Admin_Mod;
 use App\Models\DataOprec_Mod;
 
-class Admin extends BaseController
+class BackOffice extends BaseController
 {
     protected $session;
     
@@ -42,7 +42,7 @@ class Admin extends BaseController
                             'logged_in' => TRUE,
 						];
 						$session->set($session_data);
-						return redirect()->to(base_url('/dasboard/oprec'));
+						return redirect()->to(base_url('/dashboard/oprec'));
 					} else {
 						$session->setFlashdata('error', 'wrong password');
 						return redirect()->back()->withInput();
@@ -65,9 +65,9 @@ class Admin extends BaseController
         return redirect()->to('/');
     }
 
-    public function Dasboard() 
+    public function Dashboard() 
     {
-        return view('admin/registration');
+        return view('/admin/dashboard');
     }
 
     public function Oprec() 
@@ -93,7 +93,7 @@ class Admin extends BaseController
                     'divisi' => $divisi,
                 ]);
                 
-                return redirect()->to('/dasboard/oprec');
+                return redirect()->to('/dashboard/oprec');
             }else{
                 if($validation->hasError('name')) {
                     $this->session->setFlashdata('nameError', $validation->getError('name'));
@@ -108,7 +108,7 @@ class Admin extends BaseController
         $oprec->select('*');
         $data['dataOprec'] = $oprec->get()->getResult();
 
-        return view('admin/oprec_management', $data);
+        return view('/admin/oprec_management', $data);
     }
     
     public function EditDataPanit($id_panit) {
@@ -138,7 +138,7 @@ class Admin extends BaseController
             $oprec->update();
 
             $this->session->setFlashdata('success','Data updated');
-            return redirect()->to("/dasboard/edit-data-panit/$id_panit");
+            return redirect()->to("/dashboard/edit-data-panit/$id_panit");
         }
         return view('admin/edit_dataPanit',$data);
     }
@@ -148,6 +148,6 @@ class Admin extends BaseController
         $oprec->where('id',$id_panit);
         $oprec->delete();
 
-        return redirect()->to(base_url('dasboard/oprec'));
+        return redirect()->to(base_url('dashboard/oprec'));
     }
 }

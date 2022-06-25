@@ -2,7 +2,7 @@
   <div class="container">
     <div class="brandsite">
       <img
-        src="./assets/icon/compress-white-256.png"
+        src="<?= base_url('./assets/icon/compress-white-256.png')?>"
         alt="commpress-logo"
         loading="lazy"
       />
@@ -21,8 +21,8 @@
       <span>@webdev.commpress2022</span>
     </div>
     <div class="logo">
-      <img src="./assets/icon/umn-white.png" alt="umn" />
-      <img src="./assets/icon/imkom.png" alt="I'mkom" />
+      <img src="<?= base_url('./assets/icon/umn-white.png')?>" alt="umn" />
+      <img src="<?= base_url('./assets/icon/imkom.png')?>" alt="I'mkom" />
     </div>
   </div>
 </footer>

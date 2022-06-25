@@ -1,0 +1,176 @@
+.text-dark {
+  color: #231f20;
+}
+
+.bg-dark {
+  background-color: #231f20;
+}
+
+.text-pink {
+  color: #ffefe7;
+}
+
+.bg-pink {
+  background-color: #ffefe7;
+}
+
+.text-red {
+  color: #c96262;
+}
+
+.bg-red {
+  background-color: #c96262;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+body {
+  background-color: #f9f9f9;
+}
+
+.homepage {
+  min-height: 100vh;
+  margin: -10px auto;
+}
+@media screen and (min-width: 48em) {
+  .homepage {
+    width: 94%;
+  }
+}
+@media screen and (min-width: 75em) {
+  .homepage {
+    max-width: 1280px;
+  }
+}
+.homepage-banner {
+  position: relative;
+  width: 100%;
+  margin: -10px auto;
+}
+@media screen and (min-width: 48em) {
+  .homepage-banner {
+    margin-top: 118px;
+  }
+}
+.homepage-banner .banner-background {
+  width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  overflow: hidden;
+}
+@media screen and (min-width: 48em) {
+  .homepage-banner .banner-background {
+    -o-object-position: 80% center;
+    object-position: 80% center;
+  }
+}
+.homepage-banner .banner-caption {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 0 2em 0 2em;
+}
+.homepage-banner .banner-caption h1 {
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 20px;
+}
+@media screen and (min-width: 48em) {
+  .homepage-banner .banner-caption h1 {
+    font-size: 26px;
+    max-width: 720px;
+  }
+}
+.homepage .lomba {
+  max-width: 100%;
+  font-family: "Poppins-light", sans-serif;
+}
+.homepage .lomba-container {
+  max-width: 93%;
+  position: relative;
+  margin: 0 auto;
+}
+@media screen and (min-width: 64em) {
+  .homepage .lomba-container {
+    max-width: 100%;
+  }
+}
+@media screen and (min-width: 64em) {
+  .homepage .lomba .section-title {
+    max-width: 230px;
+  }
+}
+.homepage .lomba .button-section {
+  text-align: right;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+}
+@media screen and (min-width: 48em) {
+  .homepage .lomba .button-section {
+    font-size: 100%;
+  }
+}
+@media screen and (min-width: 64em) {
+  .homepage .lomba .button-section {
+    text-align: left;
+    position: relative;
+  }
+}
+.homepage .lomba .slick-slider {
+  width: 100%;
+  overflow: hidden;
+}
+.homepage .lomba .card {
+  background: #fff;
+  box-shadow: 0px 0px 3.8px rgba(0, 0, 0, 0.055),
+    0px 0px 30px rgba(0, 0, 0, 0.11);
+  margin-right: 1em;
+  width: 280px;
+}
+.homepage .lomba .card img {
+  width: 100%;
+  height: 160px;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.homepage .pesan-container {
+  max-width: 93%;
+  position: relative;
+  margin: 0 auto;
+}
+@media screen and (min-width: 64em) {
+  .homepage .pesan-container {
+    max-width: 100%;
+  }
+}
+.homepage .pesan .card {
+  background-color: #fff;
+  min-width: 320px;
+  max-width: 320px;
+  border-radius: 4px;
+  margin-right: 1em;
+}
+.homepage .pesan .card .profile {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.homepage .pesan .card img {
+  height: 30px;
+  width: 30px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 100%;
+}
+.homepage .pesan .card-container {
+  background-color: #d9d9d9;
+  border-radius: 4px;
+} /*# sourceMappingURL=member-style.css.map */

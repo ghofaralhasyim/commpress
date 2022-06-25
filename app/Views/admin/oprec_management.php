@@ -1,4 +1,4 @@
-<?= $this->extend('admin/dasboard') ?>
+<?= $this->extend('/admin/dashboard') ?>
 <?= $this->section('content') ?>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
@@ -72,8 +72,8 @@
                         <td><?= $panit->divisi ?></td>
                         <td><?= $panit->nim ?></td>
                         <td>
-                            <a href="/dasboard/edit-data-panit/<?= $panit->id ?>" style="margin-right: 5px;" class="btn btn-primary">Edit</a> 
-                            <a id="#btn-delete" href="#!" type="button" onclick="modalDelete('<?= base_url('/dasboard/delete-data-panit/') . '/' . $panit->id; ?>')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>
+                            <a href="/dashboard/edit-data-panit/<?= $panit->id ?>" style="margin-right: 5px;" class="btn btn-primary">Edit</a> 
+                            <a id="#btn-delete" href="#!" type="button" onclick="modalDelete('<?= base_url('/dashboard/delete-data-panit/') . '/' . $panit->id; ?>')" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
