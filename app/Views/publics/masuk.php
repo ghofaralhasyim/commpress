@@ -18,10 +18,7 @@
       <div class="container flex flex-col v-center text-center">
         <div class="login-wrapper">
           <h1>SELAMAT DATANG</h1>
-          <p>
-            <?= session()->getflashdata('error'); ?>
-          </p>
-          <form action="<?php echo base_url(); ?>/masuk" method="POST" class="flex flex-col full-width text-left">
+          <form autocomplete="off" action="<?php echo base_url(); ?>/masuk" method="POST" class="flex flex-col full-width text-left">
             <div class="input-group flex flex-col">
               <label for="email" class="mb-8"
                 >Email <span class="text-red">*</span></label
@@ -33,8 +30,8 @@
                 placeholder="email@address.com"
                 value="<?= old('email') ?>"
               />
-              <?php if (session()->getFlashdata('emailError')) : ?>
-                <span class="text-red text-small mt-8"><?= session()->getflashdata('emailError'); ?></span>
+              <?php if (session()->getFlashdata('email')) : ?>
+                <span class="text-red text-small mt-8"><?= session()->getflashdata('email'); ?></span>
               <?php endif; ?>
             </div>
             <div class="input-group flex flex-col mt-16">
@@ -48,8 +45,8 @@
                 placeholder="Kata Sandi"
                 value="<?= old('password') ?>"
               />
-                <?php if (session()->getFlashdata('pwdError')) : ?>
-                  <span class="text-red text-small mt-8"><?= session()->getflashdata('pwdError'); ?></span>
+                <?php if (session()->getFlashdata('password')) : ?>
+                  <span class="text-red text-small mt-8"><?= session()->getflashdata('password'); ?></span>
                 <?php endif; ?>
                 <span class="text-small mt-8 "><input type="checkbox" id="passView" class="cursor-pointer" onclick="passEye('password')">
                   <label for="passView" class="cursor-pointer">Tampilkan kata sandi.</label>

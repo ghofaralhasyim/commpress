@@ -1,0 +1,51 @@
+.text-dark {
+  color: #231f20;
+}
+
+.bg-dark {
+  background-color: #231f20;
+}
+
+.text-pink {
+  color: #ffefe7;
+}
+
+.bg-pink {
+  background-color: #ffefe7;
+}
+
+.text-red {
+  color: #c96262;
+}
+
+.bg-red {
+  background-color: #c96262;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.text-gray {
+  color: #d1d1d1;
+}
+
+.bg-gray {
+  background-color: #d1d1d1;
+}
+
+.lomba .container {
+  max-width: 920px;
+}
+.lomba-image {
+  width: 100%;
+  max-height: 230px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top center;
+     object-position: top center;
+}/*# sourceMappingURL=lomba-style.css.map */

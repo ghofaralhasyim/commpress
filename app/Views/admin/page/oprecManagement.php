@@ -7,7 +7,7 @@
    <div class="row">
         <div class="col-sm-12 col-md-12 col-xl-12">
             <div class="card pd-1" style="padding-left: 1rem;">
-                <h5 class="mb-1 mt-1" style="font-weight: 400;"><i class="ri-body-scan-line"></i> Comm-press Recruitment</h5>
+                <h5 class="mb-1 mt-1" style="font-weight: 400;"><i class="ri-body-scan-line"></i> Commpress Recruitment</h5>
                 <div class="mt-2 pd-1 col-sm-12 col-md-8 col-xl-6">
                     <form action="" method="POST">
                         <div class="form-group">
@@ -92,7 +92,7 @@
         </div>
     </div>
 
-    <?= $this->include('admin/modal') ?>
+    <?= $this->include('admin/component/modal') ?>
 
     <script language="JavaScript" type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

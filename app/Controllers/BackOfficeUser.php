@@ -3,12 +3,16 @@
 use App\Models\Admin_Mod;
 use App\Models\DataOprec_Mod;
 
-class BackOffice extends BaseController
+class BackOfficeUser extends BaseController
 {
     protected $session;
     
     function __construct()
     {
+        if (session()->get('role') != "panitia") {
+            echo 'Access denied';
+            exit;
+        }
         helper('form','url');
         $this->session = \Config\Services::session();
     }
@@ -108,7 +112,7 @@ class BackOffice extends BaseController
         $oprec->select('*');
         $data['dataOprec'] = $oprec->get()->getResult();
 
-        return view('/admin/oprec_management', $data);
+        return view('/admin/page/oprecManagement', $data);
     }
     
     public function EditDataPanit($id_panit) {
@@ -140,7 +144,7 @@ class BackOffice extends BaseController
             $this->session->setFlashdata('success','Data updated');
             return redirect()->to("/dashboard/edit-data-panit/$id_panit");
         }
-        return view('admin/edit_dataPanit',$data);
+        return view('admin/component/edit_dataPanit',$data);
     }
 
     public function DeleteDataPanit($id_panit){

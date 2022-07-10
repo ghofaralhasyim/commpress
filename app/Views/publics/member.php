@@ -15,16 +15,16 @@
 
     <?= $this->include('publics/_layouts/navbar') ?>
     
-    <section class="homepage">
+    <section class="homepage mb-32">
       <div class="homepage-banner full-width flex flex-col h-center">
         <img
-          src="./assets/img/banner-1.jpg"
+          src="<?= base_url().'/uploads/media/web_settings/'.$homepage_banner->media; ?>"
           class="banner-background"
           alt="banner"
         />
         <div class="banner-caption flex flex-col h-center">
-          <h1>Hai jurnalis muda</h1>
-          <h1>Siapkah kamu untuk mulai berkarya?</h1>
+          <h1><?= $homepage_banner->title ?></h1>
+          <h1><?= $homepage_banner->description ?></h1>
         </div>
       </div>
 
@@ -44,22 +44,14 @@
           </div>
         </div>
         <div class="slick-js">
-          <div class="card">
-            <img src="./assets/img/unsplash_ToUPBCO62Lw.jpg" alt="image" />
-            <div class="card-text p-16 f--light">Foto Tunggal</div>
-          </div>
-          <div class="card">
-            <img src="./assets/img/unsplash_FtQE89f3EXA.jpg" alt="image" />
-            <div class="card-text p-16 f--light">Video Dokumenter</div>
-          </div>
-          <div class="card">
-            <img src="./assets/img/unsplash_VmtYoE_zeYk.jpg" alt="image" />
-            <div class="card-text p-16 f--light">Podcast</div>
-          </div>
-          <div class="card">
-            <img src="./assets/img/unsplash_VmtYoE_zeYk.jpg" alt="image" />
-            <div class="card-text p-16 f--light">Podcast</div>
-          </div>
+          <?php foreach ($lomba as $lomba) : ?>
+            <a href="<?= base_url("/member/lomba/$lomba->slug"); ?>" style="text-decoration: none; color:#000;">
+              <div class="card">
+                <img src="<?= base_url("/uploads/media/lomba/thumbnail/$lomba->media"); ?>" alt="image" />
+                <div class="card-text p-16 f--light"><?= $lomba->name; ?></div>
+              </div>
+            </a>
+          <?php endforeach;?>
         </div>
       </div>
 
@@ -70,18 +62,91 @@
             <div class="slick-pesan">
               <div class="card p-16">
                 <div class="profile flex flex-row col-gap-8 v-center pb-12">
-                  <img src="./assets/img/profile-1.jpg" alt="pict" />
+                  <img src="<?= base_url('assets/img/profile-1.jpg') ?>" alt="pict" />
                   <span>Dev. Commpress</span>
                 </div>
                 <div class="message pt-12 pb-12">Halo gengs!</div>
               </div>
               <div class="card p-16">
                 <div class="profile flex flex-row col-gap-8 v-center pb-12">
-                  <img src="./assets/img/profile-1.jpg" alt="pict" />
-                  <span>Dev. Commpress</span>
+                  <img src="<?= base_url('assets/img/profile-1.jpg') ?>" alt="pict" />
+                  <span>Dev. Sponsor</span>
                 </div>
-                <div class="message pt-12 pb-12">Halo lagi!</div>
+                <div class="message pt-12 pb-12">Kunjungi kami di Github!</div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-section">
+        <h1 class="full-width">Video unggulan</h1>
+        <div class="flex flex-col lg-flex-row col-gap-18 row-gap-18">
+          <div class="video-thumbnail flex flex-col full-width fg-1">
+            <a href="#">
+              <img
+                src="<?= base_url('/assets/img/thumbnail-video-1.jpg') ?>"
+                alt="video-thumbnail"
+              />
+              <div
+                class="play-button full-width full-height flex flex-col v-center h-center"
+              >
+                <i class="ri-play-circle-fill text-white f-46"></i>
+              </div>
+              <div
+                class="caption full-width pl-24 pb-24 full-height flex flex-col h-end"
+              >
+                <span class="f-24">Opening COMMPRESS 2022</span>
+              </div>
+            </a>
+          </div>
+          <div class="flex flex-col fg-1">
+            <div class="flex flex-row col-gap-18 full-width">
+              <div class="video-thumbnail-mini fg-1">
+                <a href="#">
+                  <img
+                    src="<?= base_url('/assets/img/thumnail-video-2.jpg') ?>"
+                    alt="video-thumbnail"
+                  />
+                  <div
+                    class="play-button full-width full-height flex flex-col v-center h-center"
+                  >
+                    <i class="ri-play-circle-fill text-white f-32 pb-48"></i>
+                  </div>
+                  <div
+                    class="caption-mini full-width pl-24 pb-18 full-height flex flex-col h-end"
+                  >
+                    <span class="f-14">Tips Fotografi</span>
+                  </div>
+                </a>
+              </div>
+              <div class="video-thumbnail-mini fg-1">
+                <a href="#">
+                  <img
+                    src="<?= base_url('/assets/img/thumnail-video-2.jpg') ?>"
+                    alt="video-thumbnail"
+                  />
+                  <div
+                    class="play-button full-width full-height flex flex-col v-center h-center"
+                  >
+                    <i class="ri-play-circle-fill text-white f-32 pb-48"></i>
+                  </div>
+                  <div
+                    class="caption-mini full-width pl-24 pb-18 full-height flex flex-col h-end"
+                  >
+                    <span class="f-14">Opening COMMPRESS 2022</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="main-description full-width">
+              <h1 class="f-italiana">Opening COMMPRESS 2022</h1>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque,
+                magni in. Harum, assumenda corrupti iure fugiat fugit cupiditate
+                voluptas ipsam, qui non laborum nobis consectetur delectus
+                reprehenderit quo hic sequi!
+              </p>
             </div>
           </div>
         </div>
@@ -129,6 +194,7 @@
           infinite: false,
           speed: 300,
         });
+        
       });
     </script>
 </body>

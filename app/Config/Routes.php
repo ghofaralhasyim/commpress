@@ -33,20 +33,36 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
-$routes->get('/', 'FrontOffice::Homepage');
-$routes->get('/about','FrontOffice::About');
-$routes->add('/masuk','FrontOffice::Masuk');
-$routes->add('/daftar','FrontOffice::Daftar');
+$routes->add('/hooman','BackOfficeUser::Login');
 
-$routes->get('/member','FrontOffice::Member',['filter' => 'memberLoggedIn']);
-$routes->get('/keluar','FrontOffice::Keluar');
+$routes->get('/','PublicsController::HomePage',['filter'=> 'noauth']);
+$routes->match(['get', 'post'], 'masuk', 'UserController::Masuk', ["filter" => "noauth"]);
+$routes->match(['get', 'post'], 'daftar', 'UserController::Daftar', ["filter" => "noauth"]);
+$routes->get('/keluar','UserController::keluar');
 
-$routes->add('/hooman','BackOffice::Login');
-$routes->get('/dashboard','BackOffice::Dashboard');
-$routes->add('/dashboard/oprec','BackOffice::Oprec',['filter' => 'auth']);
-$routes->add('/dashboard/edit-data-panit/(:any)','BackOffice::EditDataPanit/$1',['filter' => 'auth']);
-$routes->get('/dashboard/delete-data-panit/(:any)','BackOffice::DeleteDataPanit/$1',['filter' => 'auth']);
-$routes->get('/logout','BackOffice::Logout');
+$routes->group("/member",['filter'=> 'auth'], function($routes){
+	$routes->get('/','FrontOffice::Member');
+	$routes->get('lomba/(:any)','FrontOffice::DetailsLomba/$1');
+});
+
+$routes->group("dashboard",['filter'=> 'auth'], function($routes){
+	$routes->get('/','BackOfficeUser::Dashboard');
+
+	// Oprec Routes
+	$routes->add('oprec','BackOfficeUser::Oprec');
+	$routes->add('edit-data-panit/(:any)','BackOfficeUser::EditDataPanit/$1');
+	$routes->get('delete-data-panit/(:any)','BackOfficeUser::DeleteDataPanit/$1');
+
+	// Lomba
+	$routes->get('lomba','BackOfficeLomba::Lomba');
+	$routes->get('lomba/(:any)','BackOfficeLomba::Details/$1');
+	$routes->add('lomba/(:any)/save-lomba','BackOfficeLomba::UpdateArticle/$1');
+	$routes->add('lomba/(:any)/save-banner-lomba','BackOfficeLomba::UpdateBanner/$1');
+
+	// Web Settings
+	$routes->get('web-settings','BackOfficeSettings::WebSettings');
+	$routes->add('web-settings/save','BackOfficeSettings::WebSettingsSave');
+});
 
 
 /*

@@ -4,19 +4,23 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
  
-class MemberLoggedIn implements FilterInterface
+class Noauth implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        // jika user belum login
-        if(! session()->get('logged_in')){
-            // maka redirct ke halaman login
-            return redirect()->to('/masuk'); 
+        if (session()->get('logged_in')) {
+
+			if (session()->get('role') == "panitia") {
+				return redirect()->to(base_url('dashboard'));
+			}
+
+			if (session()->get('role') == "peserta") {
+				return redirect()->to(base_url('member'));
+			}
         }
+
     }
- 
-    //--------------------------------------------------------------------
- 
+
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
         // Do something here
