@@ -1,4 +1,4 @@
-<?= $this->extend('admin/dasboard') ?>
+<?= $this->extend('/admin/dashboard') ?>
 <?= $this->section('content') ?>
 
 <div class="row">

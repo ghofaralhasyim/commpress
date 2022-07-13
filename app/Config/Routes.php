@@ -33,15 +33,37 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
-$routes->get('/', 'Page::Homepage');
+$routes->add('/hooman','BackOfficeUser::Login');
 
-$routes->add('/hooman','Admin::Login');
-$routes->get('/dasboard','Admin::Dasboard',['filter' => 'auth']);
-$routes->add('/dasboard/oprec','Admin::Oprec',['filter' => 'auth']);
-$routes->add('/dasboard/edit-data-panit/(:any)','Admin::EditDataPanit/$1',['filter' => 'auth']);
-$routes->get('/dasboard/delete-data-panit/(:any)','Admin::DeleteDataPanit/$1',['filter' => 'auth']);
-$routes->get('/logout','Admin::Logout');
-$routes->get('/about','User::About');
+$routes->get('/','PublicsController::HomePage',['filter'=> 'noauth']);
+$routes->match(['get', 'post'], 'masuk', 'UserController::Masuk', ["filter" => "noauth"]);
+$routes->match(['get', 'post'], 'daftar', 'UserController::Daftar', ["filter" => "noauth"]);
+$routes->get('/keluar','UserController::keluar');
+
+$routes->group("/member",['filter'=> 'auth'], function($routes){
+	$routes->get('/','FrontOffice::Member');
+	$routes->get('lomba/(:any)','FrontOffice::DetailsLomba/$1');
+});
+
+$routes->group("dashboard",['filter'=> 'auth'], function($routes){
+	$routes->get('/','BackOfficeUser::Dashboard');
+
+	// Oprec Routes
+	$routes->add('oprec','BackOfficeUser::Oprec');
+	$routes->add('edit-data-panit/(:any)','BackOfficeUser::EditDataPanit/$1');
+	$routes->get('delete-data-panit/(:any)','BackOfficeUser::DeleteDataPanit/$1');
+
+	// Lomba
+	$routes->get('lomba','BackOfficeLomba::Lomba');
+	$routes->get('lomba/(:any)','BackOfficeLomba::Details/$1');
+	$routes->add('lomba/(:any)/save-lomba','BackOfficeLomba::UpdateArticle/$1');
+	$routes->add('lomba/(:any)/save-banner-lomba','BackOfficeLomba::UpdateBanner/$1');
+
+	// Web Settings
+	$routes->get('web-settings','BackOfficeSettings::WebSettings');
+	$routes->add('web-settings/save','BackOfficeSettings::WebSettingsSave');
+});
+
 
 /*
  * --------------------------------------------------------------------
