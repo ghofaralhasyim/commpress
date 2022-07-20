@@ -1,14 +1,15 @@
 <?= $this->extend('/admin/dashboard') ?>
-<?= $this->section('content') ?>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css">
+<?= $this->section('head') ?>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
 
    <div class="row">
         <div class="col-sm-12 col-md-12 col-xl-12">
-            <div class="card pd-1" style="padding-left: 1em;">
-                <h3 class="mb-1 mt-1" style="font-weight: 400;"><i class="ri-trophy-line"></i> Lomba</h3>
+            <div class="card">
+                 <?= $breadcrumbs; ?> 
             </div>
         </div>
     </div>
@@ -48,6 +49,14 @@
                 <input type="file" name="media" id="media" class="form-control">
                 <small id="emailHelp" class="form-text text-muted">*Image size recomendation: 300x160</small>
             </div>
+             <div class="form-group mt-2">
+                <label for="type">Submission type</label>
+                <select name="type" id="type" class="form-control">
+                    <option value="image">Image</option>
+                    <option value="video">Video</option>
+                    <option value="text content">Text Content</option>
+                </select>
+            </div>
             <div class="mt-2">
 				<label for="description">Description :</label>
 				<input type="hidden" name="description" value="<?= set_value('description') ?>">
@@ -57,7 +66,7 @@
             <span class="mt-2 btn btn-outline-danger" onclick="toggleForm()">Cancel</span>
         </form>
         <div class="mt-2 pd-1">
-            <table id="example" class="table table-striped" style="width:100%">
+            <table id="table" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -73,7 +82,7 @@
                             <td><?= $lomba->name ?></td>
                             <td><?= $lomba->participant ?></td>
                             <td><?= $lomba->status ?></td>
-                            <td><a href="<?= base_url("/dashboard/lomba/{$lomba->slug}") ?>" class="btn btn-primary">Details</a></td>
+                            <td><a href="<?= base_url("/dashboard/lomba/{$lomba->slug}") ?>" >Details</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -91,15 +100,20 @@
         </div>
         </div>
     </div>
-    
-    <script language="JavaScript" type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script language="JavaScript" type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-    <script language="JavaScript" type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+
+<?= $this->endSection() ?>
+
+<?= $this->section('script') ?>
+
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script language="JavaScript" type="text/javascript">
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'print'
+                ]
+            });
         });
         var quill = new Quill('#description', {
             theme: 'snow'

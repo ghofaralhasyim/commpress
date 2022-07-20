@@ -66,7 +66,7 @@ ul {
 
 .bd-dasboard {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: $grey;
   transition: margin 0.5s ease;
 }
@@ -196,7 +196,7 @@ ul {
 .content {
   width: 100%;
   padding: 0.5rem;
-  overflow-y: auto;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   font-size: 0.75rem;
@@ -216,7 +216,7 @@ ul {
   background-color: #fff;
   border-radius: 5px;
   padding: 0.5rem;
-  width: 100%;
+  width: auto;
   display: flex;
   flex-wrap: wrap;
   font-size: $normal-font;
@@ -597,15 +597,32 @@ ul {
       position: absolute;
       top: 0;
       text-transform: uppercase;
-      font-size: 6px;
       color: #fff;
 
+      h1 {
+        font-size: 6px;
+      }
+
       @media #{$small} {
-        font-size: 10px;
+        h1 {
+          font-size: 10px;
+        }
       }
       @media #{$medium} {
-        font-size: 12px;
+        h1 {
+          font-size: 12px;
+        }
       }
     }
+  }
+}
+
+.ktm-image {
+  max-width: 300px;
+}
+
+.table {
+  tr {
+    padding: 4px 8px;
   }
 }

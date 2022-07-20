@@ -42,7 +42,14 @@ $routes->get('/keluar','UserController::keluar');
 
 $routes->group("/member",['filter'=> 'auth'], function($routes){
 	$routes->get('/','FrontOffice::Member');
-	$routes->get('lomba/(:any)','FrontOffice::DetailsLomba/$1');
+	$routes->get('lomba','FrontOfficeLomba::Index');
+	$routes->get('lomba/(:any)','FrontOfficeLomba::DetailsLomba/$1');
+	$routes->get('daftar/(:any)','FrontOfficeLomba::Submission/$1');
+	$routes->add('lomba/regist','FrontOfficeLomba::RegistLomba');
+	$routes->add('lomba/submit','FrontOfficeLomba::SubmitLomba');
+
+	$routes->get('akun','FrontOffice::Account');
+	$routes->add('akun/save','FrontOffice::EditAccount');
 });
 
 $routes->group("dashboard",['filter'=> 'auth'], function($routes){
@@ -55,7 +62,9 @@ $routes->group("dashboard",['filter'=> 'auth'], function($routes){
 
 	// Lomba
 	$routes->get('lomba','BackOfficeLomba::Lomba');
+	$routes->get('lomba/(:any)/(:any)','BackOfficeLomba::Participant/$1/$2');
 	$routes->get('lomba/(:any)','BackOfficeLomba::Details/$1');
+	$routes->get('updateStatusLomba/(:any)/(:any)','BackOfficeLomba::UpdateStatus/$1/$2');
 	$routes->add('lomba/(:any)/save-lomba','BackOfficeLomba::UpdateArticle/$1');
 	$routes->add('lomba/(:any)/save-banner-lomba','BackOfficeLomba::UpdateBanner/$1');
 

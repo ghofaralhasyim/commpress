@@ -1,0 +1,148 @@
+.text-dark {
+  color: #231f20;
+}
+
+.bg-dark {
+  background-color: #231f20;
+}
+
+.text-pink {
+  color: #ffefe7;
+}
+
+.bg-pink {
+  background-color: #ffefe7;
+}
+
+.text-red {
+  color: #c96262;
+}
+
+.bg-red {
+  background-color: #c96262;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.text-gray {
+  color: #d1d1d1;
+}
+
+.bg-gray {
+  background-color: #d1d1d1;
+}
+
+.text-yellow {
+  color: #ffcc81;
+}
+
+.bg-yellow {
+  background-color: #ffcc81;
+}
+
+.text-light-green {
+  color: #dbe3d1;
+}
+
+.bg-light-green {
+  background-color: #dbe3d1;
+}
+
+.text-green {
+  color: #6b9635;
+}
+
+.bg-green {
+  background-color: #6b9635;
+}
+
+.account-container {
+  max-width: 720px;
+}
+.account-card {
+  background-color: #fff;
+  box-shadow: 0px 0px 3.8px rgba(0, 0, 0, 0.055), 0px 0px 30px rgba(0, 0, 0, 0.11);
+  border-radius: 6px;
+  position: relative;
+  min-height: 200px;
+}
+.account-card .bg-card {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  min-height: 130px;
+  max-height: 130px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 6px 6px 0 0;
+  -o-object-position: left center;
+     object-position: left center;
+}
+@media screen and (min-width: 48em) {
+  .account-card .bg-card {
+    min-height: 100px;
+    max-height: 100px;
+  }
+}
+@media screen and (min-width: 48em) {
+  .account-card .md-flex-row {
+    flex-direction: row;
+  }
+}
+.account-card .header {
+  z-index: 2;
+  height: 100px;
+  color: #fff;
+  padding: 16px 0;
+}
+.account-card .photo-profile {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.account-card .data {
+  padding: 18px 8px;
+  margin-top: 30px;
+}
+@media screen and (min-width: 64em) {
+  .account-card .data {
+    padding: 18px 24px;
+    margin-top: 0;
+  }
+}
+
+.ktm {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 64em) {
+  .ktm {
+    display: none;
+  }
+}
+
+.ktm-image {
+  max-width: 200px;
+}
+
+.form-input {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+}
+
+.form-input[disabled] {
+  cursor: context-menu !important;
+  color: #222 !important;
+  -webkit-text-fill-color: #222;
+}/*# sourceMappingURL=account.css.map */

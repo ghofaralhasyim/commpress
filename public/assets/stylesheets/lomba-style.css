@@ -38,6 +38,30 @@
   background-color: #d1d1d1;
 }
 
+.text-yellow {
+  color: #ffcc81;
+}
+
+.bg-yellow {
+  background-color: #ffcc81;
+}
+
+.text-light-green {
+  color: #dbe3d1;
+}
+
+.bg-light-green {
+  background-color: #dbe3d1;
+}
+
+.text-green {
+  color: #6b9635;
+}
+
+.bg-green {
+  background-color: #6b9635;
+}
+
 .lomba .container {
   max-width: 920px;
 }
@@ -48,4 +72,105 @@
      object-fit: cover;
   -o-object-position: top center;
      object-position: top center;
+}
+.lomba .qr-payment {
+  width: 100%;
+  max-height: 300px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0px 0px 3.8px rgba(0, 0, 0, 0.055), 0px 0px 30px rgba(0, 0, 0, 0.11);
+  border-radius: 4px;
+}
+
+.progress-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.progress-container .icon-list {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-top: -18px;
+}
+.progress-container .icon-list span {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.progress-container .icon-list img {
+  width: 26px;
+}
+.progress-lomba {
+  position: relative;
+  min-height: 10px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.progress-lomba::-webkit-progress-value {
+  background: #c96262;
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+}
+.progress-lomba::-webkit-progress-bar {
+  background: #d4d4d4;
+}
+
+.detail-regist-image {
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 48em) {
+  .detail-regist-image {
+    flex-direction: row;
+  }
+}
+
+.payment-img {
+  margin: auto;
+  max-height: 300px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+.tab button:hover {
+  background-color: #ddd;
+}
+
+.tab button.active {
+  background-color: #ccc;
+}
+
+.tab-content {
+  display: none;
+}
+
+.notif {
+  border-radius: 4px;
 }/*# sourceMappingURL=lomba-style.css.map */

@@ -8,7 +8,7 @@
 
     <link href="<?= base_url('assets/stylesheets/member-style.css'); ?>" rel="stylesheet"/>
     <link href="<?= base_url('assets/stylesheets/base-style.css'); ?>" rel="stylesheet"/>
-    <link href="<?= base_url('/assets/slick/slick.css'); ?>" rel="stylesheet"/>
+    <link href="<?= base_url('assets/slick/slick.css'); ?>" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
@@ -40,17 +40,19 @@
             </p>
           </div>
           <div class="button-section">
-            <a href="#" class="button-primary">Daftar sekarang</a>
+            <a href="<?= base_url('/member/lomba') ?>" class="button-primary">Lihat Pendaftaran</a>
           </div>
         </div>
-        <div class="slick-js">
+        <div id="lomba-slide-homepage" class="slick-js">
           <?php foreach ($lomba as $lomba) : ?>
-            <a href="<?= base_url("/member/lomba/$lomba->slug"); ?>" style="text-decoration: none; color:#000;">
+            <?php if($lomba->status != 'closed'): ?>
+              <a href="<?= base_url("/member/lomba/$lomba->slug"); ?>" style="text-decoration: none; color:#000;">
               <div class="card">
                 <img src="<?= base_url("/uploads/media/lomba/thumbnail/$lomba->media"); ?>" alt="image" />
                 <div class="card-text p-16 f--light"><?= $lomba->name; ?></div>
               </div>
-            </a>
+              </a>
+            <?php endif; ?>
           <?php endforeach;?>
         </div>
       </div>
@@ -65,14 +67,7 @@
                   <img src="<?= base_url('assets/img/profile-1.jpg') ?>" alt="pict" />
                   <span>Dev. Commpress</span>
                 </div>
-                <div class="message pt-12 pb-12">Halo gengs!</div>
-              </div>
-              <div class="card p-16">
-                <div class="profile flex flex-row col-gap-8 v-center pb-12">
-                  <img src="<?= base_url('assets/img/profile-1.jpg') ?>" alt="pict" />
-                  <span>Dev. Sponsor</span>
-                </div>
-                <div class="message pt-12 pb-12">Kunjungi kami di Github!</div>
+                <div class="message pt-12 pb-12 text-small">Beberapa fitur web sedang dalam perbaikan. Mohon maaf atas ketidaknyamanannya.</div>
               </div>
             </div>
           </div>
@@ -154,8 +149,8 @@
     </section>
 
     <?= $this->include('publics/_layouts/footer') ?>
-
-     <script
+</body>
+<script
       src="https://code.jquery.com/jquery-2.2.4.min.js"
       integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
       crossorigin="anonymous"
@@ -163,27 +158,31 @@
     <script type="text/javascript" src="<?= base_url('assets/slick/slick.min.js') ?>"></script>
     <script type="text/javascript">
       $(document).ready(() => {
-        $(".slick-js").slick(
+        $("#lomba-slide-homepage").slick(
           {
-            slidesToShow: 2,
-            slidesToShow: 2,
+            slidesToShow: 1,
+            slidesToScroll: 1,
             arrows: false,
             variableWidth: true,
             infinite: true,
             speed: 300,
-          },
-          {
-            breakpoint: 920,
-            settings: {
-              centerMode: true,
-            },
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-            },
+            responsive: [
+              {
+              breakpoint: 920,
+              settings: {
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              }
+              },{
+              breakpoint: 480,
+              settings: {
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              }
+            }
+            ]
           }
         );
         $(".slick-pesan").slick({
@@ -197,7 +196,6 @@
         
       });
     </script>
-</body>
 
 <script src="<?= base_url('assets/js/navbar.js'); ?>"></script>
 <script src="<?= base_url('assets/js/helpers.js'); ?>"></script>

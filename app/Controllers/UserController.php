@@ -60,8 +60,14 @@ class UserController extends BaseController
         $data = [
             'id' => $user['id_member'],
             'name' => $user['name'],
+            'phone' => $user['phone'],
+            'line' => $user['id_line'],
+            'ktm' => $user['ktm'],
             'email' => $user['email'],
+            'univ' => $user['univ'],
+            'nim' => $user['nim'],
             'logged_in' => true,
+            'picture' => $user['picture'],
             "role" => $user['role'],
         ];
 

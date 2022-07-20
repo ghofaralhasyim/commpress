@@ -38,6 +38,30 @@
   background-color: #d1d1d1;
 }
 
+.text-yellow {
+  color: #ffcc81;
+}
+
+.bg-yellow {
+  background-color: #ffcc81;
+}
+
+.text-light-green {
+  color: #dbe3d1;
+}
+
+.bg-light-green {
+  background-color: #dbe3d1;
+}
+
+.text-green {
+  color: #6b9635;
+}
+
+.bg-green {
+  background-color: #6b9635;
+}
+
 *,
 ::before,
 ::after {
@@ -86,7 +110,7 @@ ul {
 
 .bd-dasboard {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f3f3f3;
   transition: margin 0.5s ease;
 }
@@ -205,7 +229,7 @@ ul {
 .content {
   width: 100%;
   padding: 0.5rem;
-  overflow-y: auto;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   font-size: 0.75rem;
@@ -227,7 +251,7 @@ ul {
   background-color: #fff;
   border-radius: 5px;
   padding: 0.5rem;
-  width: 100%;
+  width: auto;
   display: flex;
   flex-wrap: wrap;
   font-size: 0.938rem;
@@ -547,16 +571,26 @@ ul {
   position: absolute;
   top: 0;
   text-transform: uppercase;
-  font-size: 6px;
   color: #fff;
 }
+.web-settings .homepage-banner .description h1 {
+  font-size: 6px;
+}
 @media screen and (min-width: 28em) {
-  .web-settings .homepage-banner .description {
+  .web-settings .homepage-banner .description h1 {
     font-size: 10px;
   }
 }
 @media screen and (min-width: 48em) {
-  .web-settings .homepage-banner .description {
+  .web-settings .homepage-banner .description h1 {
     font-size: 12px;
   }
+}
+
+.ktm-image {
+  max-width: 300px;
+}
+
+.table tr {
+  padding: 4px 8px;
 }/*# sourceMappingURL=Dashboard.css.map */
