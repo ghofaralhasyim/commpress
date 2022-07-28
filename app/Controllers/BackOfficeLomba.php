@@ -125,7 +125,7 @@ class BackOfficeLomba extends BaseController
 
     public function Participant($slug,$id){
         $regist = new RegistrationMod();
-        $regist->select('*, registration.status as regist_status');
+        $regist->select('*, member.name as member_name, registration.status as regist_status');
         $regist->join('member','member.id_member = registration.id_member');
         $regist->join('lomba','lomba.id_lomba = registration.id_lomba');
         $regist->where('registration.id_regist',$id);

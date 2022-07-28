@@ -59,7 +59,7 @@
             </div>
           </form>
           <div class="full-width text-center mt-12 text-small">
-            Belum punya akun? Daftar <span class="text-red">disini</span>
+            Belum punya akun? Daftar <a href="/daftar" class="text-red">disini</a>
           </div>
         </div>
       </div>

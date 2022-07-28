@@ -18,22 +18,6 @@ class FrontOfficeLomba extends BaseController
         $this->session = \Config\Services::session();
     }
 
-    public function index(){
-        $regist = new RegistrationMod();
-        $regist->select('*, registration.status as regist_status');
-        $regist->join('lomba',"lomba.id_lomba = registration.id_lomba");
-        $regist->where('id_member',session()->get('id'));
-        $data['regist'] = $regist->get()->getResult();
-
-        $lomba = new LombaMod();
-        $lomba->select('*');
-        $data['lomba'] = $lomba->get()->getResult();
-
-        $data['count_regist'] = $regist->countAllResults();
-
-        return view('publics/lomba/index',$data);
-    }
-
     public function DetailsLomba($slug){
         $lomba = new LombaMod();
         $lomba->select('*');
@@ -148,6 +132,7 @@ class FrontOfficeLomba extends BaseController
         $regist->select('*, registration.status as regist_status');
         $regist->join('lomba',"lomba.id_lomba = registration.id_lomba");
         $regist->where('id_member',session()->get('id'));
+        $regist->where('registration.id_lomba',$data['lomba']->id_lomba);
         $data['regist'] = $regist->get()->getFirstRow();
 
         $submit = new SubmissionMod();

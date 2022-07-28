@@ -40,7 +40,7 @@
             </p>
           </div>
           <div class="button-section">
-            <a href="<?= base_url('/member/lomba') ?>" class="button-primary">Lihat Pendaftaran</a>
+            <a href="<?= base_url('/member/submission') ?>" class="button-primary">Lihat Pendaftaran</a>
           </div>
         </div>
         <div id="lomba-slide-homepage" class="slick-js">
@@ -74,79 +74,57 @@
         </div>
       </div>
 
-      <div class="video-section">
-        <h1 class="full-width">Video unggulan</h1>
-        <div class="flex flex-col lg-flex-row col-gap-18 row-gap-18">
-          <div class="video-thumbnail flex flex-col full-width fg-1">
-            <a href="#">
-              <img
-                src="<?= base_url('/assets/img/thumbnail-video-1.jpg') ?>"
-                alt="video-thumbnail"
-              />
-              <div
-                class="play-button full-width full-height flex flex-col v-center h-center"
-              >
-                <i class="ri-play-circle-fill text-white f-46"></i>
-              </div>
-              <div
-                class="caption full-width pl-24 pb-24 full-height flex flex-col h-end"
-              >
-                <span class="f-24">Opening COMMPRESS 2022</span>
-              </div>
-            </a>
+      <?php if($media[0]): ?>
+      <div class="flex flex-col lg-flex-row mt-32 col-gap-12 row-gap-12 media-container">
+        <?php if($media[0]->content_type === 'video'): ?>
+          <a href="<?= base_url("/member/media/").'/'.$media[0]->slug ?>" class="video-thumbnail">
+          <div class="flex flex-col full-width" >
+              <div class="overlay flex h-center v-center f-46 text-white"><i class="ri-play-circle-fill"></i></div>
+              <img src="<?= base_url("/uploads/media/medrel/thumbnail").'/'.$media[0]->thumbnail ?>" width="100%" height="100%" class="media-thumbnail full-width" alt="">
           </div>
-          <div class="flex flex-col fg-1">
-            <div class="flex flex-row col-gap-18 full-width">
-              <div class="video-thumbnail-mini fg-1">
-                <a href="#">
-                  <img
-                    src="<?= base_url('/assets/img/thumnail-video-2.jpg') ?>"
-                    alt="video-thumbnail"
-                  />
-                  <div
-                    class="play-button full-width full-height flex flex-col v-center h-center"
-                  >
-                    <i class="ri-play-circle-fill text-white f-32 pb-48"></i>
-                  </div>
-                  <div
-                    class="caption-mini full-width pl-24 pb-18 full-height flex flex-col h-end"
-                  >
-                    <span class="f-14">Tips Fotografi</span>
-                  </div>
-                </a>
-              </div>
-              <div class="video-thumbnail-mini fg-1">
-                <a href="#">
-                  <img
-                    src="<?= base_url('/assets/img/thumnail-video-2.jpg') ?>"
-                    alt="video-thumbnail"
-                  />
-                  <div
-                    class="play-button full-width full-height flex flex-col v-center h-center"
-                  >
-                    <i class="ri-play-circle-fill text-white f-32 pb-48"></i>
-                  </div>
-                  <div
-                    class="caption-mini full-width pl-24 pb-18 full-height flex flex-col h-end"
-                  >
-                    <span class="f-14">Opening COMMPRESS 2022</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div class="main-description full-width">
-              <h1 class="f-italiana">Opening COMMPRESS 2022</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque,
-                magni in. Harum, assumenda corrupti iure fugiat fugit cupiditate
-                voluptas ipsam, qui non laborum nobis consectetur delectus
-                reprehenderit quo hic sequi!
-              </p>
-            </div>
+          </a>
+        <?php endif; ?>
+        <div class="flex flex-col media-description fg-1 full-width" style="">
+          <h1 class="f-italiana mt-0 mb-0"><?= $media[0]->title ?></h1>
+          <div class="full-width content">
+            <?= $media[0]->description ?>
           </div>
+          <a href="<?= base_url("/member/media/").'/'.$media[0]->slug ?>" class="text-red mt-8 read-more">Baca lebih lengkap...</a>
         </div>
       </div>
+      <?php endif; ?>
+
+      <?php if($pameran != null): ?>
+      <div
+        class="lomba flex flex-col lg-flex-row col-gap-16 mt-32 lomba-container"
+      >
+        <div class="section-title flex flex-row lg-flex-col fg-1">
+          <div class="flex flex-col">
+            <span class="f-italiana f-32 f--bold">Rua ng Indiependen</span>
+            <p>
+              Pilih diantara <span class="f--bold">6 lomba</span>
+              dan jadilah yang terbaik!
+            </p>
+          </div>
+          <div class="button-section">
+            <a href="<?= base_url('/member/submission') ?>" class="button-primary">Lihat Pendaftaran</a>
+          </div>
+        </div>
+        <div id="pameran-slide-homepage" class="slick-js">
+          <?php foreach ($pameran as $pameran) : ?>
+              <a href="<?= base_url("/member/pameran/$pameran->slug"); ?>" style="text-decoration: none; color:#000;">
+              <div class="card">
+                <img src="<?= base_url("/uploads/media/pameran/thumbnail/$pameran->thumbnail"); ?>" alt="image" />
+                <div class="card-text p-16 f--light"><?= $pameran->name; ?></div>
+              </div>
+              </a>
+          <?php endforeach;?>
+        </div>
+      </div>
+      <?php endif;?>
+
     </section>
+    
 
     <?= $this->include('publics/_layouts/footer') ?>
 </body>
@@ -159,6 +137,33 @@
     <script type="text/javascript">
       $(document).ready(() => {
         $("#lomba-slide-homepage").slick(
+          {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            variableWidth: true,
+            infinite: true,
+            speed: 300,
+            responsive: [
+              {
+              breakpoint: 920,
+              settings: {
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              }
+              },{
+              breakpoint: 480,
+              settings: {
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              }
+            }
+            ]
+          }
+        );
+        $("#pameran-slide-homepage").slick(
           {
             slidesToShow: 1,
             slidesToScroll: 1,

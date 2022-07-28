@@ -9,7 +9,7 @@
         <div class="flex flex-col account-card">
             <img src="<?= base_url('assets/img/banner-1.jpg') ?>" class="bg-card" alt="">
             <div class="header pl-18 flex flex-col md-flex-row v-center col-gap-12">
-                <img src="<?= $member->picture == null ? base_url('assets/img/profile-1.jpg') : base_url("uploads/media/user/profile-picture/$member->picture") ?>" class="photo-profile" alt="">
+                <img src="<?= $member->picture == null ? base_url('assets/img/profile-1.png') : base_url("uploads/media/user/profile-picture/$member->picture") ?>" class="photo-profile" alt="">
                 <div class="flex flex-col">
                     <h3 class="mb-0 mt-0">Hi, <?= $member->name ?></h3>
                 </div>

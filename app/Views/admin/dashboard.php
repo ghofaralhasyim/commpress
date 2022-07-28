@@ -27,8 +27,11 @@
                     <a style="text-decoration: none;" href="<?php base_url() ?>/dashboard/oprec" class="sideNav__link <?php if(!strcmp($url,"dashboard/oprec")){echo 'active';} ?>">
                         <div class="sideNav__icon"><i class="ri-user-3-line"></i><span> Oprec</span></div>
                     </a>
-                    <a style="text-decoration: none;" href="<?php base_url() ?>/dashboard/lomba" class="sideNav__link <?php if(!strcmp($url,"dashboard/web-settings")){echo 'active';} ?>">
+                    <a style="text-decoration: none;" href="<?php base_url() ?>/dashboard/lomba" class="sideNav__link <?php if(!strcmp($url,"dashboard/lomba")){echo 'active';} ?>">
                         <div class="sideNav__icon"><i class="ri-trophy-line"></i><span> Lomba</span></div>
+                    </a>
+                    <a style="text-decoration: none;" href="<?php base_url() ?>/dashboard/pameran" class="sideNav__link <?php if(!strcmp($url,"dashboard/pameran")){echo 'active';} ?>">
+                        <div class="sideNav__icon"><i class="ri-landscape-line"></i><span> Pameran</span></div>
                     </a>
                     <a style="text-decoration: none;" href="<?php base_url() ?>/dashboard/web-settings" class="sideNav__link <?php if(!strcmp($url,"dashboard/web-settings")){echo 'active';} ?>">
                         <div class="sideNav__icon"><i class="ri-tools-fill"></i><span> Web Settings</span></div>

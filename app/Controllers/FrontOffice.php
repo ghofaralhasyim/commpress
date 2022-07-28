@@ -2,7 +2,10 @@
 
 use App\Models\WebSettings;
 use App\Models\LombaMod;
+use App\Models\MediaMod;
+use App\Models\PameranMod;
 use App\Models\MemberMod;
+use App\Models\RegistrationMod;
 
 class FrontOffice extends BaseController
 {
@@ -31,6 +34,14 @@ class FrontOffice extends BaseController
         $lomba = new LombaMod();
         $lomba->select('*');
         $data['lomba'] = $lomba->get()->getResult();
+
+        $pameran = new PameranMod();
+        $pameran->select('*');
+        $data['pameran'] = $pameran->get()->getResult();
+
+        $medrel = new MediaMod();
+        $medrel->select('*');
+        $data['media'] = $medrel->get()->getResult();
 
         foreach($results as $temp){
             $data[$temp->key_settings] = $temp;
@@ -125,5 +136,38 @@ class FrontOffice extends BaseController
 			}
         }
         return redirect()->back();
+    }
+
+     public function Submission(){
+        $regist = new RegistrationMod();
+        $regist->select('*, registration.status as regist_status');
+        $regist->join('lomba',"lomba.id_lomba = registration.id_lomba");
+        $regist->where('id_member',session()->get('id'));
+        $data['lomba_regist'] = $regist->get()->getResult();
+
+        $regist->select('*, registration.status as regist_status');
+        $regist->join('pameran',"pameran.id_pameran = registration.id_pameran");
+        $regist->where('id_member',session()->get('id'));
+        $data['pameran_regist'] = $regist->get()->getResult();
+
+        $lomba = new LombaMod();
+        $lomba->select('*');
+        $data['lomba'] = $lomba->get()->getResult();
+
+        $pameran = new PameranMod();
+        $pameran->select('*');
+        $data['pameran'] = $pameran->get()->getResult();
+
+        $regist->select('id_regist');
+        $regist->where('id_lomba!=',NULL);
+        $regist->where('id_member',session()->get('id'));
+        $data['count_lomba'] = $regist->countAllResults();
+
+        $regist->select('id_regist');
+        $regist->where('id_pameran!=',NULL);
+        $regist->where('id_member',session()->get('id'));
+        $data['count_pameran'] = $regist->countAllResults();
+
+        return view('publics/submission',$data);
     }
 }   

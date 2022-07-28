@@ -15,9 +15,9 @@
     </div>
 
     <div class="row mt-2">
-        <div class="col-sm-12 col-md-12 col-xl-6 ">
+        <div class="col-sm-12">
             <div class="card pt-12 pl-12">
-                <div class="flex flex-col lg-flex-row col-gap-12">
+                <div class="flex flex-col lg-flex-row col-gap-12 v-center h-center row-gap-12">
                    
                    <div class="flex flex-col">
                         <img src="<?= base_url('/uploads/media/user/ktm').'/'.$regist->ktm ?>" class="ktm-image" alt="">
@@ -28,7 +28,7 @@
                             <tr>
                                 <td>Name</td>
                                 <td>:</td>
-                                <td><?= $regist->name ?></td>
+                                <td><?= $regist->member_name ?></td>
                             </tr>
                              <tr>
                                 <td>Universitas</td>
@@ -72,17 +72,21 @@
 
     <div class="row mt-2">
         <div class="col-sm-12">
-            <div class="card flex flex-col">
-                <h5>Submission</h5>
-                <?php if(strtolower($regist->regist_status) === 'submitted'): ?>
-                <div class="mb-12">
-                    Submission title : <?= $submission->title ?>
+            <div class="card flex flex-col pb-32">
+                <div class="flex h-center full-width mt-32">
+                    <div class="full-width" style="max-width: 720px;">
+                        <h5>Submission</h5>
+                        <?php if(strtolower($regist->regist_status) === 'submitted'): ?>
+                        <div class="mb-12">
+                            Submission title : <?= $submission->title ?>
+                        </div>
+                    </div>
                 </div>
                 <?php if(strtolower($regist->type_submission) === 'video'): ?>
-                    <div class="full-width mt-12 flex flex-col">
+                    <div class="full-width mt-12 flex flex-col v-center">
                         <iframe width="100%"
                             class="mt-12"
-                            style="aspect-ratio: 16/9; "
+                            style="aspect-ratio: 16/9; max-width: 720px;"
                             src="https://www.youtube.com/embed/<?= $submission->url ?>" 
                             title="<?= $submission->title ?>" 
                             frameborder="0" allow="accelerometer; 
@@ -101,8 +105,10 @@
                             Your browser does not support the audio element.
                         </audio>
                     <?php endif; ?>
-                    <div class="full-width mt-12">
-                        <?= $submission->caption ?>
+                    <div class="flex full-width v-center h-center">
+                        <div class="mt-12" style="max-width: 720px;">
+                            <?= $submission->caption ?>
+                        </div>
                     </div>
                     <?php else: ?>
                         <div class="full-width bg-yellow p-12">Peserta belum mengunggah karya.</div>

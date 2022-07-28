@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UserMod;
+use CodeIgniter\I18n\Time;
 
 class UserController extends BaseController
 {
@@ -11,7 +12,7 @@ class UserController extends BaseController
     {
         $data = [];
 
-        if ($this->request->getMethod() == 'post') {
+        if (!empty($_POST)) {
 
             $rules = [
                 'email' => 'required|valid_email',
@@ -49,6 +50,12 @@ class UserController extends BaseController
                 }elseif($user['role'] == "peserta"){
 
                     return redirect()->to(base_url('member'));
+                }elseif($user['role'] == "media"){
+
+                    return redirect()->to(base_url('dashboard-media'));
+                }elseif($user['role'] == "curator"){
+
+                    return redirect()->to(base_url('curator'));
                 }
             }
         }
@@ -128,6 +135,10 @@ class UserController extends BaseController
 
     public function keluar()
     {
+        $member = new UserMod();
+        $member->set('last_login', new Time('now'));
+        $member->where('id_member', session()->get('id'));
+        $member->update();
         session()->destroy();
         return redirect()->to('/');
     }

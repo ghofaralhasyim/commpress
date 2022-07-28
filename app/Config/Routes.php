@@ -42,11 +42,22 @@ $routes->get('/keluar','UserController::keluar');
 
 $routes->group("/member",['filter'=> 'auth'], function($routes){
 	$routes->get('/','FrontOffice::Member');
-	$routes->get('lomba','FrontOfficeLomba::Index');
+	$routes->get('submission','FrontOffice::Submission');
+
+	//Lomba
 	$routes->get('lomba/(:any)','FrontOfficeLomba::DetailsLomba/$1');
-	$routes->get('daftar/(:any)','FrontOfficeLomba::Submission/$1');
+	$routes->get('daftar/lomba/(:any)','FrontOfficeLomba::Submission/$1');
 	$routes->add('lomba/regist','FrontOfficeLomba::RegistLomba');
 	$routes->add('lomba/submit','FrontOfficeLomba::SubmitLomba');
+
+	//Pameran
+	$routes->get('pameran/(:any)','FrontOfficePameran::Details/$1');
+	$routes->add('pameran/regist','FrontOfficePameran::Regist');
+	$routes->get('daftar/pameran/(:any)','FrontOfficePameran::Submission/$1');
+	$routes->add('pameran/submit','FrontOfficePameran::Submit');
+
+	//Media
+	$routes->get('media/(:any)','FrontOfficeMedia::media/$1');
 
 	$routes->get('akun','FrontOffice::Account');
 	$routes->add('akun/save','FrontOffice::EditAccount');
@@ -68,9 +79,26 @@ $routes->group("dashboard",['filter'=> 'auth'], function($routes){
 	$routes->add('lomba/(:any)/save-lomba','BackOfficeLomba::UpdateArticle/$1');
 	$routes->add('lomba/(:any)/save-banner-lomba','BackOfficeLomba::UpdateBanner/$1');
 
+	//Pameran
+	$routes->get('pameran','BackOfficePameran::Index');
+	$routes->get('pameran/(:any)/(:any)','BackOfficePameran::Participant/$1/$2');
+	$routes->add('pameran/(:any)/save-pameran','BackOfficePameran::UpdatePameran/$1');
+	$routes->get('pameran/(:any)','BackOfficePameran::Details/$1');
+	$routes->add('pameran/(:any)/save-banner-pameran','BackOfficepameran::UpdateBanner/$1');
+
 	// Web Settings
 	$routes->get('web-settings','BackOfficeSettings::WebSettings');
 	$routes->add('web-settings/save','BackOfficeSettings::WebSettingsSave');
+});
+
+$routes->group("dashboard-media",['filter'=> 'auth'], function($routes){
+	$routes->get('/','Media::index');
+	$routes->get('content','Media::content');
+	$routes->add('content/save','Media::SaveContent');
+});
+
+$routes->group("curator",['filter'=> 'auth'], function($routes){
+	$routes->get('/','Curator::index');
 });
 
 

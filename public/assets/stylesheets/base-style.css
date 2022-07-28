@@ -1606,3 +1606,7 @@ body {
   height: 25px;
   border-radius: 100%;
 }
+
+.q-content > p {
+  text-align: justify;
+}

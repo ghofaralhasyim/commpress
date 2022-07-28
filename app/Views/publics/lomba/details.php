@@ -11,7 +11,7 @@
             <?php if($regist > 0): ?>
                 <div class="full-width">
                     <p class="full-width bg-gray notif p-12 f-14 ">
-                        Kamu telah terdaftar pada lomba ini. <a href="<?= base_url('/member/lomba')?>" class="text-red">Lihat detail registrasi.</a>
+                        Kamu telah terdaftar pada lomba ini. <a href="<?= base_url('/member/submission')?>" class="text-red">Lihat detail registrasi.</a>
                     </p>
                 </div>
             <?php endif; ?>

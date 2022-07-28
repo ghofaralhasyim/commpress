@@ -12,7 +12,7 @@
           </a>
           <?php if(session()->get('logged_in')): ?>
           <ul class="nav-list ml-32 desktop-only">
-             <li class="nav-item"><a href="<?= base_url('/member/lomba') ?>" class="nav-link">Lomba</a></li>
+             <li class="nav-item"><a href="<?= base_url('/member/submission') ?>" class="nav-link">Submission</a></li>
           </ul>
           <?php endif; ?>
         </div>
@@ -43,7 +43,7 @@
               <?php else: ?>
                 <li class="nav-item">
                  <div class="nav-dropdown" >
-                    <span id="nav-dropdown" class="cursor-pointer"><img src="<?= session()->get('picture') != null ? base_url("uploads/media/user/profile-picture/".session()->get('picture')) : base_url('assets/images/qr.png')  ?>" class="profile-photo" alt=""></span>
+                    <span id="nav-dropdown" class="cursor-pointer"><img src="<?= session()->get('picture') != null ? base_url("uploads/media/user/profile-picture/".session()->get('picture')) : base_url('assets/img/profile-1.png')  ?>" class="profile-photo" alt=""></span>
                     <div id="nav-dropdown-content" class="nav-dropdown-content">
                         <a href="<?= base_url('/member/akun') ?>">Akun</a>
                         <a href="/keluar">Keluar</a>

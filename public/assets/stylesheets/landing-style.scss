@@ -1,0 +1,144 @@
+@import "../stylesheets/module/variables";
+
+.landing {
+  margin-top: -$header-height;
+  height: 100%;
+  background-color: #e5e5e5;
+  .section-1 {
+    padding-top: $header-height;
+    width: 100%;
+    min-height: calc(100vh - $header-height);
+    background-image: url("../img/bg-landing.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 30%;
+    color: #fff;
+
+    @media #{$large} {
+    }
+
+    .container {
+      height: calc(100vh - $header-height);
+      position: relative;
+    }
+
+    .title {
+      max-width: 720px;
+      position: absolute;
+      top: 20%;
+      align-items: center;
+      width: 100%;
+
+      @media #{$large} {
+        bottom: 55%;
+        align-items: flex-start;
+      }
+      h1 {
+        font-size: 32px !important;
+        font-weight: 400 !important;
+        text-align: center;
+
+        @media #{$large} {
+          font-size: 48px !important;
+          text-align: left;
+        }
+      }
+
+      p {
+        font-family: "Poppins-Light", sans-serif;
+        max-width: 380px;
+        font-size: 0.9em;
+        text-align: center;
+
+        @media #{$large} {
+          text-align: left;
+          font-size: 1em;
+          max-width: 100%;
+        }
+      }
+
+      a {
+        width: fit-content;
+        font-size: 0.9em;
+      }
+    }
+
+    .content {
+      &-1 {
+        position: absolute;
+        bottom: 10%;
+        align-items: center;
+        h1 {
+          font-family: "Poppins-Light", sans-serif;
+          font-weight: 300 !important;
+          font-size: 20px !important;
+
+          @media #{$large} {
+            font-size: 32px !important;
+          }
+        }
+
+        .c-1 {
+          text-align: center;
+          align-items: center;
+          @media #{$large} {
+            align-items: flex-start;
+            text-align: left;
+          }
+        }
+
+        a {
+          color: #fff;
+          font-family: "Poppins-Light", sans-serif;
+        }
+      }
+    }
+  }
+}
+
+.lomba {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.card {
+  background-color: #fff;
+}
+
+.section-4 {
+  background-color: #0e0e0e;
+  height: 100vh;
+  padding: 120px 0;
+
+  iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+}
+
+.footer {
+  margin-top: -12px;
+}
+
+.media {
+  &-thumbnail {
+    width: 100%;
+    max-height: 324px;
+    object-fit: cover;
+    @media #{$large} {
+      max-width: 576px;
+    }
+  }
+  &-description {
+    max-height: 324px;
+    text-overflow: ellipsis;
+    @media #{$large} {
+      max-width: 50%;
+    }
+
+    * {
+      text-align: justify;
+    }
+  }
+}

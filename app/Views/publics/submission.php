@@ -9,39 +9,23 @@
 <?= $this->section('content') ?>
 <section class="pb-64">
 
-            <section class="homepage" style="min-height: auto;">
-                <div class="lomba flex flex-col lg-flex-row col-gap-16 mt-48 lomba-container">
-                <div class="section-title flex flex-row lg-flex-col fg-1">
-                <div class="flex flex-col">
-                    <span class="f-italiana f-32 f--bold">LOMBA</span>
+            <section class="container mt-32 p-12 " style="min-height: auto;">
+               <div class="flex full-width flex flex-col lg-flex-row v-center--spread mt-12 h-center">
+                    <span class="f-italiana f-32 f--bold">Lomba</span>
                     <p>
-                    Kamu masih bisa mendaftar <span class="f--bold"><?= 3-$count_regist ?> lomba lagi.</span>
+                    Kamu masih bisa mendaftar <span class="f--bold"><?= 3-$count_lomba ?> lomba lagi.</span>
                     Daftar segera!
                     </p>
                 </div>
-                </div>
-                <div class="slick-js">
-                    <?php foreach ($lomba as $lomba) : ?>
-                        <?php if($lomba->status != 'closed'): ?>
-                          <a href="<?= base_url("/member/lomba/$lomba->slug"); ?>" style="text-decoration: none; color:#000;">
-                          <div class="card">
-                            <img src="<?= base_url("/uploads/media/lomba/thumbnail/$lomba->media"); ?>" alt="image" />
-                            <div class="card-text p-16 f--light"><?= $lomba->name; ?></div>
-                          </div>
-                          </a>
-                        <?php endif; ?>
-                    <?php endforeach;?>
-                    </div>
-                </div>
-
             </section>
-            <?php if($count_regist > 0): ?>
+
+            <?php if($count_lomba > 0): ?>
             <section class="container mt-32 p-8">
-                <?php foreach ($regist as $data) : ?> 
-                  <div class="flex flex-col card p-16 v-center--spread ">
+                <?php foreach ($lomba_regist as $data) : ?> 
+                  <div class="flex flex-col card p-16 v-center--spread mb-12">
                       <div class="flex flex-row v-center--spread">
                         <span class="f-18"><?= $data->name; ?></span>
-                        <a href="<?= base_url("/member/daftar/$data->slug") ?>" class="button-primary pl-12 pr-12 pt-0 pb-0">Detail</a>
+                        <a href="<?= base_url("/member/daftar/lomba/$data->slug") ?>" class="button-primary pl-12 pr-12 pt-0 pb-0">Detail</a>
                       </div>
                       <div class="progress-container mt-16">
                         <progress class="progress-lomba" 
@@ -69,6 +53,55 @@
             <?php else: ?>
               <section class="container mt-32">
                 <div class="bg-yellow p-12 text-small" style="color:#ad782a; border-radius:4px;">Kamu belum terdaftar dalam lomba apapun.</div>
+              </section>
+            <?php endif; ?>
+
+            <section class="container mt-32 p-12 " style="min-height: auto;">
+                <div class="flex full-width flex flex-col lg-flex-row v-center--spread mt-12 h-center">
+                    <span class="f-italiana f-32 f--bold">Ruang Indiependen</span>
+                    <p>
+                    Kamu masih bisa mendaftarkan <span class="f--bold"><?= 3-$count_pameran ?> karya lagi.</span>
+                    Daftar segera!
+                    </p>
+                </div>
+            </section>
+
+            <?php if($count_pameran > 0): ?>
+            <section class="container p-8">
+                <?php foreach ($pameran_regist as $data) : ?> 
+                  <div class="flex flex-col card p-16 v-center--spread mb-12">
+                      <div class="flex flex-row v-center--spread">
+                        <span class="f-18"><?= $data->name; ?></span>
+                        <a href="<?= base_url("/member/daftar/pameran/$data->slug") ?>" class="button-primary pl-12 pr-12 pt-0 pb-0">Detail</a>
+                      </div>
+                      <div class="progress-container mt-16">
+                        <progress class="progress-lomba" 
+                          value="<?php if($data->regist_status === 'confirmed'){echo 5;}
+                          else{echo 7;}?>" max="7">
+                        </progress>
+                        <div class="icon-list">
+                            <span class="text-small">
+                          </span>
+                          <span class="text-small">
+                            <img src="<?= base_url('/assets/icon/circle-add.png') ?>" alt="">
+                            Pendaftaran
+                          </span>
+                          <span class="text-small">
+                          </span>
+                          <span class="text-small">
+                            <img src="<?= base_url('/assets/icon/circle-upload.png') ?>" alt="">
+                            Submit karya
+                          </span>
+                          <span class="text-small">
+                          </span>
+                        </div>
+                      </div>
+                  </div>
+                 <?php endforeach; ?> 
+            </section>
+            <?php else: ?>
+              <section class="container mt-32">
+                <div class="bg-yellow p-12 text-small" style="color:#ad782a; border-radius:4px;">Kamu belum terdaftar untuk mengikuti Ruang Indiependen.</div>
               </section>
             <?php endif; ?>
 
