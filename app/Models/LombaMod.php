@@ -8,5 +8,5 @@ class LombaMod extends Model
 {
     protected $table = 'lomba';
 
-    protected $allowedFields = ['id_lomba','name','status','description','slug','media','banner'];
+    protected $allowedFields = ['id_lomba','name','status','description','slug','media','banner','type_submission'];
 }

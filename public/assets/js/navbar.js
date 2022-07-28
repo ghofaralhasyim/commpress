@@ -11,3 +11,10 @@ closeMenu.addEventListener("click", () => {
   navMenu.classList.remove("show-nav");
   toggler.classList.remove("d-none");
 });
+
+const navDropdown = document.getElementById("nav-dropdown"),
+  navDropContent = document.getElementById("nav-dropdown-content");
+
+navDropdown.addEventListener("click", () => {
+  navDropContent.classList.toggle("nav-drop-active");
+})

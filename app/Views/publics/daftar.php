@@ -93,7 +93,7 @@
             </div>
           </form>
           <div class="full-width text-center mt-12 text-small">
-            Sudah punya akun? Masuk <span class="text-red">disini</span>
+            Sudah punya akun? Masuk <a href="/masuk" class="text-red">disini</a>
           </div>
         </div>
       </div>

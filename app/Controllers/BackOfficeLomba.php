@@ -2,10 +2,13 @@
 
 use App\Models\LombaMod;
 use App\Models\RegistrationMod;
+use App\Libraries\Breadcrumb;
+use App\Models\SubmissionMod;
 
 class BackOfficeLomba extends BaseController
 {
     protected $session;
+    public $breadcrumb;
     
     function __construct()
     {
@@ -15,6 +18,7 @@ class BackOfficeLomba extends BaseController
         }
         helper('form','url');
         $this->session = \Config\Services::session();
+        $this->breadcrumb = new Breadcrumb();
     }
 
 	public function Lomba(){
@@ -25,6 +29,7 @@ class BackOfficeLomba extends BaseController
         $lomba->groupBy('lomba.id_lomba');
 
         $data['listLomba'] = $lomba->get()->getResult();
+        $data['breadcrumbs'] = $this->breadcrumb->buildAuto();
 
         return view('admin/page/lomba/lomba',$data);
     }
@@ -33,15 +38,17 @@ class BackOfficeLomba extends BaseController
         $regist = new RegistrationMod();
         $lomba = new LombaMod();
 
-        $regist->select('*, registration.status as status, registration.media as payment');
+        $regist->select('*, registration.status as status, registration.payment as payment');
         $regist->join('lomba',"lomba.slug = '$slug'");
         $regist->join('member',"member.id_member = registration.id_member");
         $regist->where('registration.id_lomba = lomba.id_lomba');
+        $regist->orderBy('registration.status',"desc");
         $data['listRegist'] = $regist->get()->getResult();
 
         $lomba->select('*');
         $lomba->where('lomba.slug',"$slug");
         $data['lomba'] = $lomba->get()->getFirstRow();
+        $data['breadcrumbs'] = $this->breadcrumb->buildAuto();
 
         return view('admin/page/lomba/details',$data);
     }
@@ -61,6 +68,7 @@ class BackOfficeLomba extends BaseController
             $lomba->set('name', $this->request->getVar('name'));
             $lomba->set('slug', strtolower(preg_replace('/\s+/', '-', $this->request->getVar('name'))));
             $lomba->set('status', $this->request->getVar('status'));
+            $lomba->set('type_submission', $this->request->getVar('type'));
             $lomba->where('slug', "$slug");
             $lomba->update();
             $session->setFlashdata('success', "$slug has been updated!");
@@ -76,6 +84,7 @@ class BackOfficeLomba extends BaseController
                 'slug' => strtolower(preg_replace('/\s+/', '-', $this->request->getVar('name'))),
                 'status' => $this->request->getVar('status'),
                 'description' => $this->request->getVar('description'),
+                'type_submission' =>  $this->request->getVar('type'),
                 'media' => $fileName,
                 'banner' => $bannerName
             ]);
@@ -99,6 +108,36 @@ class BackOfficeLomba extends BaseController
         $media->move('uploads/media/lomba/banner/', $fileName);
 
         return redirect()->to("/dashboard/lomba/$slug");
+    }
+
+    public function UpdateStatus($status,$id){
+        $regist = new RegistrationMod();
+        if($status == 'confirm'){
+            $regist->set('status','confirmed');
+        }elseif($status == 'reject'){
+            $regist->set('status','rejected');
+        }
+        $regist->where('id_regist',$id);
+        $regist->update();
+
+        return redirect()->back();
+    }
+
+    public function Participant($slug,$id){
+        $regist = new RegistrationMod();
+        $regist->select('*, member.name as member_name, registration.status as regist_status');
+        $regist->join('member','member.id_member = registration.id_member');
+        $regist->join('lomba','lomba.id_lomba = registration.id_lomba');
+        $regist->where('registration.id_regist',$id);
+        $data['regist'] = $regist->get()->getFirstRow();
+
+        $submit = new SubmissionMod();
+        $submit->select('*');
+        $submit->where('id_regist',$id);
+        $data['submission'] = $submit->get()->getFirstRow();
+
+        $data['breadcrumbs'] = $this->breadcrumb->buildAuto();
+        return view('admin/page/lomba/participant',$data);
     }
    
 }

@@ -1,5 +1,8 @@
 <?php namespace App\Controllers;
 
+use App\Models\LombaMod;
+use App\Models\MediaMod;
+
 class PublicsController extends BaseController
 {
 
@@ -10,7 +13,15 @@ class PublicsController extends BaseController
     }
 
 	public function HomePage(){
-        return view('publics/homepage/landing');
+        $lomba = new LombaMod();
+        $lomba->select('*');
+        $data['lomba'] = $lomba->get()->getResult();
+
+        $medrel = new MediaMod();
+        $medrel->select('*');
+        $data['media'] = $medrel->get()->getResult();
+
+        return view('publics/index',$data);
     }
 }   
     

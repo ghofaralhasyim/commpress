@@ -1,0 +1,15 @@
+.media {
+  &-description {
+    p {
+      text-align: justify;
+    }
+  }
+
+  &-video {
+    iframe {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;
+    }
+  }
+}

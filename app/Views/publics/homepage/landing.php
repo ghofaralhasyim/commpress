@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?= $this->include('publics/meta') ?>
     <link href="<?= base_url('assets/stylesheets/homepage-style.css'); ?>" rel="stylesheet" />
     <link href="<?= base_url('assets/stylesheets/base-style.css'); ?>" rel="stylesheet" />
@@ -19,5 +16,5 @@
 
 </body>
 
-<script src="<?= base_url('assets/js/homepage.js'); ?>"></script>
+<script src="<?= base_url('assets/js/navbar.js'); ?>"></script>
 </html>

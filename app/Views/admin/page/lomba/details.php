@@ -1,14 +1,15 @@
 <?= $this->extend('/admin/dashboard') ?>
-<?= $this->section('content') ?>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css">
+<?= $this->section('head') ?>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
 
    <div class="row">
         <div class="col-sm-12 col-md-12 col-xl-12">
-            <div class="card pd-1" style="padding-left: 1em;">
-                <h3 class="mb-1 mt-1" style="font-weight: 400;"><i class="ri-trophy-line"></i> Video Dokumenter</h3>
+            <div class="card">
+                 <?= $breadcrumbs; ?> 
             </div>
         </div>
     </div>
@@ -21,10 +22,10 @@
                         <h5 class="mt-1" style="font-weight: 400;"><i class="ri-chat-check-line"></i> Settings <?= $lomba->name; ?></h5>
                     </div>
                     <div class="col" style="text-align: right;">
-                        <button id="buttonShow" class="btn btn-outline-primary" onclick="toggleForm()">Hide</button>
+                        <button id="buttonShow" class="btn btn-outline-primary" onclick="toggleForm()">Show</button>
                     </div>
                 </div>
-                <form id="formBanner" action="<?= base_url("/dashboard/lomba/$lomba->slug/save-banner-lomba") ?>" class="mb-4" 
+                <form id="formBanner" action="<?= base_url("/dashboard/lomba/$lomba->slug/save-banner-lomba") ?>" class="mb-4 d-none" 
                 enctype="multipart/form-data" method="POST">
                     <div class="form-group">
                         <label for="banner">Banner Image</label>
@@ -38,7 +39,7 @@
                     </div>
                     <button class="btn btn-primary mt-2" type="submit">Update Banner</button>
                 </form>
-                <form id="form" action="<?= base_url("/dashboard/lomba/$lomba->slug/save-lomba") ?>"
+                <form id="form" action="<?= base_url("/dashboard/lomba/$lomba->slug/save-lomba") ?>" class="d-none"
                 autocomplete="off" method="POST" class="mb-4" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -61,6 +62,14 @@
                             ><?= $lomba->media; ?></a>
                         </small>
                     </div>
+                    <div class="form-group mt-2">
+                        <label for="type">Type Submission</label>
+                        <select name="type" id="type" class="form-control">
+                            <option <?php if($lomba->type_submission == "video") echo 'selected'; ?> value="video">Video</option>
+                            <option <?php if($lomba->type_submission == "image") echo 'selected'; ?> value="image">Image</option>
+                            <option <?php if($lomba->type_submission == "text content") echo 'selected'; ?> value="text content">Text Content</option>
+                        </select>
+                    </div>
                     <div class="mt-2">
 					    <label for="description">Description :</label>
 					    <input type="hidden" name="description" value="<?= htmlspecialchars($lomba->description); ?>">
@@ -75,17 +84,18 @@
     </div>
 
     <div class="row mt-2">
-        <div class="col-sm-12 col-md-12 col-xl-12">
-        <div class="card pd-1" style="padding-left: 1rem;">
+        <div class="col-sm-12 col-md-12 col-xl-12" >
+        <div class="card pd-1" style="padding-left: 1rem; overflow-y:scroll; max-width:100%;">
         <h5 class="mb-1 mt-1" style="font-weight: 400;"><i class="ri-chat-check-line"></i> Participant</h5>
         <div class="mt-2 pd-1">
-            <table id="example" class="table table-striped" style="width:100%">
+            <table id="example" class="table table-striped" style="max-width:100%;">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>NIM</th>
+                        <th>Univ</th>
                         <th>Payment</th>
-                        <!-- <th>Submission</th> -->
+                        <th>ID Line</th>
+                        <th>Phone</th>
                         <th>Status</th>
                         <th></th>
                     </tr>
@@ -93,19 +103,28 @@
                  <tbody>
                     <?php foreach ($listRegist as $regist) : ?> 
                         <tr>
-                            <td><?= $regist->name ?></td>
-                            <td><?= $regist->nim ?></td>
+                            <td> <a href="<?= base_url('/dashboard/lomba/').'/'.$lomba->slug.'/'.$regist->id_regist ?>"
+                                style="text-decoration:none;">
+                                <?= $regist->name ?></a>
+                            </td>
+                            <td><?= $regist->univ ?></td>
                             <td>
                                 <?php if($regist->payment != null): ?>
-                                   <a href="<?= base_url("/uploads/media/web_settings/$regist->payment"); ?>" target="blank">
-                                        <?= $regist->payment; ?>
+                                   <a href="<?= base_url("/uploads/media/lomba/payment/$regist->payment"); ?>" target="blank">
+                                        Open
                                     </a>
                                 <?php endif; ?>
                             </td>
+                            <td><?= $regist->id_line ?></td>
+                            <td><?= $regist->phone ?></td>
                             <td><?= $regist->status ?></td>
                             <td>
-                                <button class="btn btn-primary">Confirm</button>
-                                <button class="btn btn-warning">Reject</button>
+                                <?php if($regist->status == 'pending'): ?>
+                                    <a href="<?= base_url('/dashboard/updateStatusLomba/confirm').'/'.$regist->id_regist ?>" class="bg-red p-1 text-white">Confirm</a>
+                                    <a href="<?= base_url('/dashboard/updateStatusLomba/reject').'/'.$regist->id_regist ?>" class="bg-yellow p-1 text-white">Reject</button>
+                                <?php else:?>
+                                    <a href="<?= base_url('/dashboard/lomba/').'/'.$lomba->slug.'/'.$regist->id_regist ?>" >Details</a>
+                                <?php endif;?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -113,9 +132,10 @@
                 <tfoot>
                     <tr>
                         <th>Name</th>
-                        <th>NIM</th>
+                        <th>Univ</th>
                         <th>Payment</th>
-                        <!--<th>Submission</th> -->
+                        <th>ID Line</th>
+                        <th>Phone</th>
                         <th>Status</th>
                         <th></th>
                     </tr>
@@ -125,29 +145,27 @@
         </div>
         </div>
     </div>
-    
-    <script language="JavaScript" type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script language="JavaScript" type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-    <script language="JavaScript" type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+
+<?= $this->endSection() ?>
+
+<?= $this->section('script') ?>
+    <style>
+        div > .dt-buttons{
+            float: left !important;
+        }
+    </style>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script language="JavaScript" type="text/javascript">
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'print'
+                ]
+            });
         });
-
         var quill = new Quill('#description', {
-            theme: 'snow',
-            modules: {
-            toolbar: [
-                [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                [{ font: [] }],
-                [{ align: [] }],
-                ["bold", "italic","strike"],
-                ["link", "blockquote"],
-                [{ list: "ordered" }, { list: "bullet" }],
-            ]
-            },
+            theme: 'snow'
         });
          quill.on('text-change', function(delta, oldDelta, source) {
             document.querySelector("input[name='description']").value = quill.root.innerHTML;
@@ -162,9 +180,9 @@
             formBanner.classList.toggle('d-none');
             show = !show;
             if(show){
-                button.innerHTML = 'Hide';
-            }else{
                 button.innerHTML = 'Show';
+            }else{
+                button.innerHTML = 'Hide';
             }
         }
     </script>

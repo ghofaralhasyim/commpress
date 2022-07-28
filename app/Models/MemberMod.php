@@ -8,5 +8,5 @@ class MemberMod extends Model
 {
     protected $table = 'member';
 
-    protected $allowedFields = ['id_member','email','password','name','last_login','created_at'];
+    protected $allowedFields = ['id_member','email','role','password','name','last_login','created_at','ktm','id_line','phone','univ','nim','picture'];
 }

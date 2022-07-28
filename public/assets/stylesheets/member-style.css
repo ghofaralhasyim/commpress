@@ -174,131 +174,69 @@ body {
   background-color: #d9d9d9;
   border-radius: 4px;
 }
-.homepage .video-section {
+
+.media-container .video-thumbnail {
+  position: relative;
+  max-height: 324px;
+  overflow: hidden;
+}
+
+.media-container .video-thumbnail img {
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 64em) {
+  .media-container .video-thumbnail {
+    max-width: 50%;
+  }
+}
+
+.media-container .video-thumbnail .overlay {
+  position: absolute;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    to top,
+    rgb(0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.3) 30%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.media-container {
   max-width: 93%;
   position: relative;
-  overflow: hidden;
   margin: 0 auto;
 }
 @media screen and (min-width: 64em) {
-  .homepage .video-section {
-    max-width: 100%;
-    max-height: 380px;
-  }
-}
-.homepage .video-section h1 {
-  text-transform: uppercase;
-}
-.homepage .video-section .main-description {
-  order: -1;
-}
-@media screen and (min-width: 64em) {
-  .homepage .video-section .main-description {
-    order: 0;
+  .media-container {
     max-width: 100%;
   }
 }
-.homepage .video-section .main-description h1 {
-  margin: 0;
-}
+
 @media screen and (min-width: 64em) {
-  .homepage .video-section .main-description h1 {
-    margin-top: 1.2em;
+  .media-description {
+    max-width: 50%;
   }
 }
-.homepage .video-section .main-description p {
-  margin: 8px 0 16px 0;
-  font-family: "Poppins-Light", sans-serif;
-  font-weight: 300;
-  max-height: 3em;
+.media-description * {
+  text-align: justify;
+}
+
+.media-description p {
+  font-size: 0.9em;
+}
+
+.media-description .content {
+  max-height: 5.6em;
   overflow: hidden;
 }
+
 @media screen and (min-width: 64em) {
-  .homepage .video-thumbnail {
-    max-height: 260px;
-    max-width: 480px;
+  .media-description .content {
+    max-height: 14.6em;
   }
 }
-@media screen and (min-width: 75em) {
-  .homepage .video-thumbnail {
-    max-width: 560px;
-    min-height: 380px;
-    max-height: 380px;
-  }
-}
-.homepage .video-thumbnail a {
-  overflow: hidden;
-  position: relative;
-}
-.homepage .video-thumbnail img {
-  -o-object-fit: cover;
-  object-fit: cover;
-  width: 100%;
-}
-@media screen and (min-width: 64em) {
-  .homepage .video-thumbnail img {
-    width: auto;
-  }
-}
-.homepage .video-thumbnail .play-button,
-.homepage .video-thumbnail .video-thumbnail-mini .caption-mini,
-.homepage .video-thumbnail-mini .video-thumbnail .caption-mini {
-  position: absolute;
-  bottom: 0;
-  color: #fff;
-}
-.homepage .video-thumbnail .play-button i,
-.homepage .video-thumbnail .video-thumbnail-mini .caption-mini i,
-.homepage .video-thumbnail-mini .video-thumbnail .caption-mini i {
-  opacity: 1;
-  transition: 0.3s ease;
-}
-.homepage .video-thumbnail .caption {
-  color: #fff;
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    to top,
-    rgb(0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.3) 30%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}
-.homepage .video-thumbnail-mini {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 360px;
-  min-height: 130px;
-}
-.homepage .video-thumbnail-mini img {
-  -o-object-fit: cover;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-.homepage .video-thumbnail-mini img:hover {
-  transform: scale(0.1);
-}
-.homepage .video-thumbnail-mini .play-button,
-.homepage .video-thumbnail-mini .caption-mini {
-  position: absolute;
-  bottom: 0;
-  color: #fff;
-}
-.homepage .video-thumbnail-mini .play-button i,
-.homepage .video-thumbnail-mini .caption-mini i {
-  opacity: 1;
-  transition: 0.3s ease;
-}
-.homepage .video-thumbnail-mini .caption-mini {
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    to top,
-    rgb(0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.3) 30%,
-    rgba(0, 0, 0, 0) 100%
-  );
-} /*# sourceMappingURL=member-style.css.map */
