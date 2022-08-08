@@ -1477,6 +1477,17 @@ body {
   background-color: #231f20;
   transition: 0.5s ease;
 }
+
+.desktop-only-nav {
+  display: none;
+}
+
+@media screen and (min-width: 64em) {
+  .desktop-only-nav {
+    display: flex;
+  }
+}
+
 @media screen and (min-width: 64em) {
   .nav-menu {
     position: relative;

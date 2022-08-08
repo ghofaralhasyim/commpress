@@ -169,6 +169,9 @@ class FrontOfficeLomba extends BaseController
 				    'title' => ['title' => 'title', 'rules' => 'required', 'errors' => ['required' => 'Judul karya wajib diisi.']],
                     'caption' => ['caption' => 'caption', 'rules' => 'required', 'errors' => ['required' => 'Caption wajib diisi.']],
                     'url' => ['url' => 'url', 'rules' => 'required', 'errors' => ['required' => 'ID video wajib diisi.']],
+                    'thumbnail' => ['thumbnail' => 'thumbnail', 'rules' => ['uploaded[thumbnail]','is_image[thumbnail,image/jpg,image/jpeg,image/png]'], 
+                            'errors' => ['is_image' => 'Format gambar tidak sesuai.','uploaded' => 'Thumbnail wajib disertakan.']
+                        ],
 			    ]);
             }elseif(preg_replace('/\s+/', '', $this->request->getVar('type')) === 'audio'){
                 $validation->setRules([
@@ -176,6 +179,16 @@ class FrontOfficeLomba extends BaseController
                     'caption' => ['caption' => 'caption', 'rules' => 'required', 'errors' => ['required' => 'Caption wajib diisi.']],
                     'karya' => ['karya' => 'karya', 'rules' => ['uploaded[karya]','ext_in[karya,mp3,m4a]'], 
                             'errors' => ['ext_in' => 'Format audio tidak sesuai.','uploaded' => 'Karya wajib disertakan.']
+                        ],                   
+			    ]);
+            }elseif(preg_replace('/\s+/', '', $this->request->getVar('type')) === 'pdf'){
+                $validation->setRules([
+				    'title' => ['title' => 'title', 'rules' => 'required', 'errors' => ['required' => 'Judul karya wajib diisi.']],
+                    'karya' => ['karya' => 'karya', 'rules' => ['uploaded[karya]','ext_in[karya,pdf]'], 
+                            'errors' => ['ext_in' => 'Format file tidak sesuai.','uploaded' => 'Karya wajib disertakan.']
+                        ],
+                    'thumbnail' => ['thumbnail' => 'thumbnail', 'rules' => ['uploaded[thumbnail]','is_image[thumbnail,image/jpg,image/jpeg,image/png]'], 
+                        'errors' => ['is_image' => 'Format gambar tidak sesuai.','uploaded' => 'Thumbnail wajib disertakan.']
                         ],                   
 			    ]);
             }else{
@@ -195,12 +208,21 @@ class FrontOfficeLomba extends BaseController
                     $karyaFile = null;
                 }
 
+                $thumbnail = $this->request->getFile('thumbnail');
+                if(is_file($thumbnail)){
+                    $thumbnailFile = $this->request->getVar('slug').'-thumbnail-'.$thumbnail->getRandomName();
+                    $thumbnail->move("uploads/submission/".trim($this->request->getVar('slug')).'/', $karyaFile.'-thumbnail');
+                }else{
+                    $thumbnailFile = null;
+                }
+                var_dump($thumbnailFile);
                 $submit->insert([
                     'id_regist' => preg_replace('/\s+/', '', $this->request->getVar('id_regist')),
                     'title' => $this->request->getVar('title'),
                     'caption' => $this->request->getVar('caption'),
                     'url' => $this->request->getVar('url'),
-                    'media' => $karyaFile
+                    'media' => $karyaFile,
+                    'thumbnail' => $thumbnailFile
                 ]);
 
                 $regist->set('status','submitted');
@@ -211,10 +233,11 @@ class FrontOfficeLomba extends BaseController
                 $session->setFlashdata('url', $validation->getError('url'));
 				$session->setFlashdata('karya', $validation->getError('karya'));
 				$session->setFlashdata('title', $validation->getError('title'));
+                $session->setFlashdata('thumbnail', $validation->getError('thumbnail'));
 
 				return redirect()->back()->withInput();
             }
         }
-        return redirect()->back();
+       return redirect()->back();
     }
 }   

@@ -11,8 +11,9 @@
             />
           </a>
           <?php if(session()->get('logged_in')): ?>
-          <ul class="nav-list ml-32 desktop-only">
+          <ul class="nav-list ml-32 desktop-only-nav">
              <li class="nav-item"><a href="<?= base_url('/member/submission') ?>" class="nav-link">Submission</a></li>
+             <li class="nav-item"><a href="<?= base_url('/member/ruang-indiependen') ?>" class="nav-link">Ruang Indiependen</a></li>
           </ul>
           <?php endif; ?>
         </div>

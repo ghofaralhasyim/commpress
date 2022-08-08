@@ -147,6 +147,20 @@
                         <span class="text-red text-small mt-8"><?= session()->getflashdata('title'); ?></span>
                     <?php endif; ?>
                 </div>
+                <?php if(strtolower($lomba->type_submission) === 'video' || strtolower($lomba->type_submission) === 'pdf' || strtolower($lomba->type_submission) === 'audio'):?>
+                 <div class="flex flex-col input-group mt-12">
+                        <label for="thumbnail" class="mb-8">Thumbnail<span class="text-red">*</span></label>
+                        <input
+                            id="thumbnail" name="thumbnail"
+                            type="file"
+                            class="form-input full-width"
+                            value="<?= old('thumbnail'); ?>"
+                        />
+                        <?php if (session()->getFlashdata('thumbnail')) : ?>
+                            <span class="text-red text-small mt-8"><?= session()->getflashdata('thumbnail'); ?></span>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
                 <?php if(strtolower($lomba->type_submission) === 'video'): ?>
                     <div class="input-group flex flex-col mt-12">
                     <label for="url" class="mb-8">ID video youtube<span class="text-red">*</span></label>
@@ -162,7 +176,7 @@
                             <span class="text-red text-small mt-8"><?= session()->getflashdata('url'); ?></span>
                         <?php endif; ?>
                     </div>
-                <?php elseif(strtolower($lomba->type_submission) === 'image' || strtolower($lomba->type_submission) === 'audio'): ?>
+                <?php else: ?>
                     <div class="flex flex-col input-group mt-12">
                         <label for="karya" class="mb-8">File karya<span class="text-red">*</span></label>
                         <input
@@ -176,6 +190,7 @@
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
+                <?php if(strtolower($lomba->type_submission) != 'pdf'):?>
                 <div class="input-group flex flex-col mt-12">
                     <label for="caption">Caption :</label>
                     <input type="hidden" name="caption" value="<?= set_value('caption') ?>">
@@ -184,6 +199,7 @@
                         <span class="text-red text-small mt-8"><?= session()->getflashdata('caption'); ?></span>
                     <?php endif; ?>
                 </div>
+                <?php endif; ?>
                 <button type="submit" class="button-primary mt-12">Submit</button>
             </form>
         </div>
@@ -221,10 +237,16 @@
                         <source src="<?= base_url("/uploads/submission/$lomba->slug/$submission->media"); ?>" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
+                <?php elseif(strtolower($lomba->type_submission) === 'pdf'): ?>
+                    <embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=<?= base_url("/uploads/submission/$lomba->slug/$submission->media"); ?>" 
+                         class="pdf-viewer full-width" style="height:60vh">
+                    </embed>
                 <?php endif; ?>
-                <div class="full-width">
-                    <?= $submission->caption ?>
-                </div>
+                <?php if(strtolower($lomba->type_submission) != 'pdf'):?>
+                    <div class="full-width">
+                        <?= $submission->caption ?>
+                    </div>
+                <?php endif; ?>
         </section>
     <?php endif; ?>
 

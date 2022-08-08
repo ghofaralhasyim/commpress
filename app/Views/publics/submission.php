@@ -9,7 +9,35 @@
 <?= $this->section('content') ?>
 <section class="pb-64">
 
-            <section class="container mt-32 p-12 " style="min-height: auto;">
+            <section class="container p-8 text-small mt-32">
+              <div class="card flex flex-col p-12">
+                <h2 class="mt-8 mb-0">Informasi!</h2>
+                <p>
+                  Hai hai hai, jurnalis muda! Buat kalian yang sudah mendaftar dan mengirimkan karya, 
+                  siapkan catatan dan kalender kalian untuk tanggal-tanggal penting di bawah ini ya!
+                </p>
+                <h4 class="mt-0 mb-0">> Road to Young Journalist Award</h4>
+                <p>
+                  Rangkaian ini penting untuk kalian karena akan ada <b>pembacaan nominasi 5 karya terbaik</b> dari tiap kategori pameran dan lomba. <br>
+                  Hari/tanggal: <br>
+                  - Kamis, 22 September 2022; Pukul 11.00 WIB dan 14.00 WIB untuk nominasi pameran Ruang Indiependen <br>
+                  - Jumat, 23 September 2022; Pukul 11.00 WIB dan 14.00 WIB untuk nominasi lomba <br>
+                  Tempat: Instagram Live @commpressumn
+                </p>
+                <h4 class="mt-0 mb-0">> Young Journalist Award</h4>
+                <p>
+                  Yang ditunggu-tunggu, nih. <b>Malam penganugerahan</b> bagi para peserta lomba dan pameran Ruang Indiependen. 
+                  Pastinya akan ada reveal pemenang dan after party bareng guest star juga lho. <br>
+                  Hari/tanggal: Sabtu, 24 September 2022 <br>
+                  Tempat: Zoom Meeting (tautan menyusul) <br> <br>
+
+                  Sekian informasi dari divisi Acara. Terima kasih untuk perhatiannya. Semangat dan sukses untuk para peserta!
+                </p>
+              </div>
+            </section>
+
+
+            <section class="container p-12 " style="min-height: auto;">
                <div class="flex full-width flex flex-col lg-flex-row v-center--spread mt-12 h-center">
                     <span class="f-italiana f-32 f--bold">Lomba</span>
                     <p>
@@ -20,7 +48,7 @@
             </section>
 
             <?php if($count_lomba > 0): ?>
-            <section class="container mt-32 p-8">
+            <section class="container p-8">
                 <?php foreach ($lomba_regist as $data) : ?> 
                   <div class="flex flex-col card p-16 v-center--spread mb-12">
                       <div class="flex flex-row v-center--spread">

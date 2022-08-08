@@ -56,6 +56,10 @@ $routes->group("/member",['filter'=> 'auth'], function($routes){
 	$routes->get('daftar/pameran/(:any)','FrontOfficePameran::Submission/$1');
 	$routes->add('pameran/submit','FrontOfficePameran::Submit');
 
+	//Ruang Indiependen
+	$routes->get('ruang-indiependen','FrontOfficeRin::index');
+	$routes->get('ruang-indiependen/foto-tunggal','FrontOfficeRin::fotoTunggal');
+
 	//Media
 	$routes->get('media/(:any)','FrontOfficeMedia::media/$1');
 
@@ -99,6 +103,8 @@ $routes->group("dashboard-media",['filter'=> 'auth'], function($routes){
 
 $routes->group("curator",['filter'=> 'auth'], function($routes){
 	$routes->get('/','Curator::index');
+	$routes->add('qualified/(:any)','Curator::Qualifier/$1');
+	$routes->get('(:any)','Curator::Details/$1');
 });
 
 

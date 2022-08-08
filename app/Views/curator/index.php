@@ -1,4 +1,4 @@
-<?= $this->extend('/media/_layouts/default') ?>
+<?= $this->extend('/curator/_layouts/default') ?>
 
 <?= $this->section('head') ?>
 <?= $this->endSection() ?>
