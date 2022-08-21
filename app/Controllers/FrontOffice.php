@@ -3,6 +3,7 @@
 use App\Models\WebSettings;
 use App\Models\LombaMod;
 use App\Models\MediaMod;
+use App\Models\MedsponMod;
 use App\Models\PameranMod;
 use App\Models\MemberMod;
 use App\Models\RegistrationMod;
@@ -12,7 +13,7 @@ class FrontOffice extends BaseController
 
     function __construct()
     {
-		if (session()->get('role') != "peserta") {
+		if (session()->get('role') != "peserta" && session()->get('role') != "curator") {
             echo 'Access denied';
             exit;
         }
@@ -42,6 +43,10 @@ class FrontOffice extends BaseController
         $medrel = new MediaMod();
         $medrel->select('*');
         $data['media'] = $medrel->get()->getResult();
+
+        $medsponsor = new MedsponMod();
+        $medsponsor->select('*');
+        $data['media_sponsor'] = $medsponsor->get()->getResult();
 
         foreach($results as $temp){
             $data[$temp->key_settings] = $temp;

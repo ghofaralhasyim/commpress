@@ -11,7 +11,7 @@ class FrontOfficePameran extends BaseController
 
     function __construct()
     {
-		if (session()->get('role') != "peserta") {
+		if (session()->get('role') != "peserta" && session()->get('role') != "curator") {
             echo 'Access denied';
             exit;
         }
@@ -59,11 +59,20 @@ class FrontOfficePameran extends BaseController
             $session = session();
             $validation =  \Config\Services::validation();
 
-            $validation->setRules([
+            $category_member = trim($this->request->getVar('category_member'));
+
+            if($category_member === 'umum'){
+                $validation->setRules([
+                    'phone' => ['phone' => 'phone', 'rules' => ['required','numeric'], 'errors' => ['required' => 'No. handphone wajib diisi.']],
+                    'line' => ['line' => 'line', 'rules' => 'required', 'errors' => ['required' => 'ID Line wajib diisi.']],
+			    ]);
+            }else{
+                 $validation->setRules([
                     'univ' => ['univ' => 'univ', 'rules' => 'required|min_length[11]', 'errors' => ['required' => 'Asal universitas wajib diisi.']],
                     'phone' => ['phone' => 'phone', 'rules' => ['required','numeric'], 'errors' => ['required' => 'No. handphone wajib diisi.']],
                     'line' => ['line' => 'line', 'rules' => 'required', 'errors' => ['required' => 'ID Line wajib diisi.']],
 			    ]);
+            }
 
 			$isValid = $validation->withRequest($this->request)->run();
 
@@ -128,7 +137,18 @@ class FrontOfficePameran extends BaseController
             $session = session();
             $validation =  \Config\Services::validation();
             
-            if(preg_replace('/\s+/', '', $this->request->getVar('type')) === 'image'){
+            if($this->request->getVar('slug') === 'info-grafik'){
+                 $validation->setRules([
+				'title' => ['title' => 'title', 'rules' => 'required', 'errors' => ['required' => 'Judul karya wajib diisi.']],
+                'caption' => ['caption' => 'caption', 'rules' => 'required', 'errors' => ['required' => 'Caption wajib diisi.']],
+                'karya' => ['karya' => 'karya', 'rules' => ['uploaded[karya]','is_image[karya,image/jpg,image/jpeg,image/png]'], 
+                            'errors' => ['is_image' => 'Format gambar tidak sesuai.','uploaded' => 'Karya wajib disertakan.']
+                        ],
+                'thumbnail' => ['thumbnail' => 'thumbnail', 'rules' => ['uploaded[thumbnail]','is_image[thumbnail,image/jpg,image/jpeg,image/png]'], 
+                            'errors' => ['is_image' => 'Format gambar tidak sesuai.','uploaded' => 'Thumbnail wajib disertakan.']
+                        ],
+			    ]);
+            }elseif(preg_replace('/\s+/', '', $this->request->getVar('type')) === 'image'){
                 $validation->setRules([
 				'title' => ['title' => 'title', 'rules' => 'required', 'errors' => ['required' => 'Judul karya wajib diisi.']],
                 'caption' => ['caption' => 'caption', 'rules' => 'required', 'errors' => ['required' => 'Caption wajib diisi.']],
@@ -141,6 +161,9 @@ class FrontOfficePameran extends BaseController
 				    'title' => ['title' => 'title', 'rules' => 'required', 'errors' => ['required' => 'Judul karya wajib diisi.']],
                     'caption' => ['caption' => 'caption', 'rules' => 'required', 'errors' => ['required' => 'Caption wajib diisi.']],
                     'url' => ['url' => 'url', 'rules' => 'required', 'errors' => ['required' => 'ID video wajib diisi.']],
+                    'thumbnail' => ['thumbnail' => 'thumbnail', 'rules' => ['uploaded[thumbnail]','is_image[thumbnail,image/jpg,image/jpeg,image/png]'], 
+                            'errors' => ['is_image' => 'Format gambar tidak sesuai.','uploaded' => 'Thumbnail wajib disertakan.']
+                        ],
 			    ]);
             }elseif(preg_replace('/\s+/', '', $this->request->getVar('type')) === 'audio'){
                 $validation->setRules([
@@ -148,6 +171,9 @@ class FrontOfficePameran extends BaseController
                     'caption' => ['caption' => 'caption', 'rules' => 'required', 'errors' => ['required' => 'Caption wajib diisi.']],
                     'karya' => ['karya' => 'karya', 'rules' => ['uploaded[karya]','ext_in[karya,mp3,m4a]'], 
                             'errors' => ['ext_in' => 'Format audio tidak sesuai.','uploaded' => 'Karya wajib disertakan.']
+                        ],
+                    'thumbnail' => ['thumbnail' => 'thumbnail', 'rules' => ['uploaded[thumbnail]','is_image[thumbnail,image/jpg,image/jpeg,image/png]'], 
+                            'errors' => ['is_image' => 'Format gambar tidak sesuai.','uploaded' => 'Thumbnail wajib disertakan.']
                         ],                   
 			    ]);
             }else{
@@ -167,12 +193,21 @@ class FrontOfficePameran extends BaseController
                     $karyaFile = null;
                 }
 
+                $thumbnail = $this->request->getFile('thumbnail');
+                if(is_file($thumbnail)){
+                    $thumbnailFile = $this->request->getVar('slug').'-thumbnail-'.$thumbnail->getRandomName();
+                    $thumbnail->move("uploads/submission/".trim($this->request->getVar('slug')).'/', $thumbnailFile);
+                }else{
+                    $thumbnailFile = null;
+                }
+
                 $submit->insert([
                     'id_regist' => preg_replace('/\s+/', '', $this->request->getVar('id_regist')),
                     'title' => $this->request->getVar('title'),
                     'caption' => $this->request->getVar('caption'),
                     'url' => $this->request->getVar('url'),
-                    'media' => $karyaFile
+                    'media' => $karyaFile,
+                    'thumbnail' => $thumbnailFile
                 ]);
 
                 $regist->set('status','submitted');
@@ -181,6 +216,7 @@ class FrontOfficePameran extends BaseController
             }else{
                 $session->setFlashdata('caption', $validation->getError('caption'));
                 $session->setFlashdata('url', $validation->getError('url'));
+                $session->setFlashdata('thumbnail', $validation->getError('thumbnail'));
 				$session->setFlashdata('karya', $validation->getError('karya'));
 				$session->setFlashdata('title', $validation->getError('title'));
 

@@ -54,6 +54,9 @@ class Curator extends BaseController
         $submission->where('id_submission',$id);
         $submission->update();
 
+        $session = session();
+        $session->setFlashdata('qualifier', $id );
+
         return redirect()->back();
     }
 }

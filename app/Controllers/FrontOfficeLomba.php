@@ -10,7 +10,7 @@ class FrontOfficeLomba extends BaseController
 
     function __construct()
     {
-		if (session()->get('role') != "peserta") {
+		if (session()->get('role') != "peserta" && session()->get('role') != "curator") {
             echo 'Access denied';
             exit;
         }
@@ -211,7 +211,7 @@ class FrontOfficeLomba extends BaseController
                 $thumbnail = $this->request->getFile('thumbnail');
                 if(is_file($thumbnail)){
                     $thumbnailFile = $this->request->getVar('slug').'-thumbnail-'.$thumbnail->getRandomName();
-                    $thumbnail->move("uploads/submission/".trim($this->request->getVar('slug')).'/', $karyaFile.'-thumbnail');
+                    $thumbnail->move("uploads/submission/".trim($this->request->getVar('slug')).'/', $thumbnailFile.'-thumbnail');
                 }else{
                     $thumbnailFile = null;
                 }

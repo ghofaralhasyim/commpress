@@ -2,6 +2,7 @@
 
 use App\Models\LombaMod;
 use App\Models\MediaMod;
+use App\Models\MedsponMod;
 
 class PublicsController extends BaseController
 {
@@ -20,6 +21,10 @@ class PublicsController extends BaseController
         $medrel = new MediaMod();
         $medrel->select('*');
         $data['media'] = $medrel->get()->getResult();
+
+        $media = new MedsponMod();
+        $media->select('*');
+        $data['media_sponsor'] = $media->get()->getResult();
 
         return view('publics/index',$data);
     }

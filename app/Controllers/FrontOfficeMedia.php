@@ -8,7 +8,7 @@ class FrontOfficeMedia extends BaseController
 
     function __construct()
     {
-		if (session()->get('role') != "peserta") {
+		if (session()->get('role') != "peserta" && session()->get('role') != "curator") {
             echo 'Access denied';
             exit;
         }

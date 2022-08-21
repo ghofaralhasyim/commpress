@@ -59,6 +59,18 @@ $routes->group("/member",['filter'=> 'auth'], function($routes){
 	//Ruang Indiependen
 	$routes->get('ruang-indiependen','FrontOfficeRin::index');
 	$routes->get('ruang-indiependen/foto-tunggal','FrontOfficeRin::fotoTunggal');
+	$routes->get('ruang-indiependen/video-dokumenter','FrontOfficeRin::videoDokumenter');
+	$routes->get('ruang-indiependen/info-grafik','FrontOfficeRin::infoGrafik');
+	$routes->get('ruang-indiependen/kolase-digital','FrontOfficeRin::kolaseDigital');
+	$routes->get('ruang-indiependen/karya/(:any)','FrontOfficeRin::Details/$1');
+
+	//Kurasi
+	$routes->get('kurasi','FrontOfficeKurasi::index');
+	$routes->get('kurasi/foto-tunggal','FrontOfficeKurasi::fotoTunggal');
+	$routes->get('kurasi/video-dokumenter','FrontOfficeKurasi::videoDokumenter');
+	$routes->get('kurasi/info-grafik','FrontOfficeKurasi::infoGrafik');
+	$routes->get('kurasi/kolase-digital','FrontOfficeKurasi::kolaseDigital');
+	$routes->get('kurasi/karya/(:any)','FrontOfficeKurasi::Details/$1');
 
 	//Media
 	$routes->get('media/(:any)','FrontOfficeMedia::media/$1');
@@ -90,6 +102,13 @@ $routes->group("dashboard",['filter'=> 'auth'], function($routes){
 	$routes->get('pameran/(:any)','BackOfficePameran::Details/$1');
 	$routes->add('pameran/(:any)/save-banner-pameran','BackOfficepameran::UpdateBanner/$1');
 
+	// Media Sponsor
+	$routes->get('media-sponsor','BackOfficeMedspon::Index');
+	$routes->add('media-sponsor/save','BackOfficeMedspon::Save');
+	$routes->get('media-sponsor/delete/(:any)','BackOfficeMedspon::Delete/$1');
+	$routes->get('media-sponsor/edit/(:any)','BackOfficeMedspon::Edit/$1');
+	$routes->add('media-sponsor/update','BackOfficeMedspon::Update');
+
 	// Web Settings
 	$routes->get('web-settings','BackOfficeSettings::WebSettings');
 	$routes->add('web-settings/save','BackOfficeSettings::WebSettingsSave');
@@ -101,11 +120,7 @@ $routes->group("dashboard-media",['filter'=> 'auth'], function($routes){
 	$routes->add('content/save','Media::SaveContent');
 });
 
-$routes->group("curator",['filter'=> 'auth'], function($routes){
-	$routes->get('/','Curator::index');
-	$routes->add('qualified/(:any)','Curator::Qualifier/$1');
-	$routes->get('(:any)','Curator::Details/$1');
-});
+
 
 
 /*

@@ -14,6 +14,9 @@
           <ul class="nav-list ml-32 desktop-only-nav">
              <li class="nav-item"><a href="<?= base_url('/member/submission') ?>" class="nav-link">Submission</a></li>
              <li class="nav-item"><a href="<?= base_url('/member/ruang-indiependen') ?>" class="nav-link">Ruang Indiependen</a></li>
+            <?php if(session()->get('role') === 'curator'): ?>
+              <li class="nav-item"><a href="<?= base_url('/member/kurasi/foto-tunggal') ?>" class="nav-link">Kurasi</a></li>
+            <?php endif;?>
           </ul>
           <?php endif; ?>
         </div>
@@ -31,7 +34,11 @@
               <li class="nav-item"><a href="/masuk" class="nav-link">Masuk</a></li>
               <li class="nav-item"><a href="/daftar" class="nav-link">Daftar</a></li>
             <?php else : ?>
-              <li class="nav-item"><a href="<?= base_url('/member/lomba') ?>" class="nav-link">Lomba</a></li>
+              <li class="nav-item"><a href="<?= base_url('/member/akun') ?>" class="nav-link">Akun</a></li>
+              <li class="nav-item"><a href="<?= base_url('/member/submission') ?>" class="nav-link">Submission</a></li>
+              <?php if(session()->get('role') === 'curator'): ?>
+                <li class="nav-item"><a href="<?= base_url('/member/kurasi/foto-tunggal') ?>" class="nav-link">Kurasi</a></li>
+              <?php endif;?>
               <li class="nav-item"><a href="/keluar" class="nav-link">Keluar</a></li>
             <?php endif ?>
           </ul>

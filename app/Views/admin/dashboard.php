@@ -33,6 +33,9 @@
                     <a style="text-decoration: none;" href="<?php base_url() ?>/dashboard/pameran" class="sideNav__link <?php if(!strcmp($url,"dashboard/pameran")){echo 'active';} ?>">
                         <div class="sideNav__icon"><i class="ri-landscape-line"></i><span> Pameran</span></div>
                     </a>
+                    <a style="text-decoration: none;" href="<?php base_url() ?>/dashboard/media-sponsor" class="sideNav__link <?php if(!strcmp($url,"dashboard/pameran")){echo 'active';} ?>">
+                        <div class="sideNav__icon"><i class="ri-windy-fill"></i><span> Media & Sponsor</span></div>
+                    </a>
                     <a style="text-decoration: none;" href="<?php base_url() ?>/dashboard/web-settings" class="sideNav__link <?php if(!strcmp($url,"dashboard/web-settings")){echo 'active';} ?>">
                         <div class="sideNav__icon"><i class="ri-tools-fill"></i><span> Web Settings</span></div>
                     </a>

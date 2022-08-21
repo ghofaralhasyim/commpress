@@ -27,6 +27,20 @@
           <h1><?= $homepage_banner->description ?></h1>
         </div>
       </div>
+      
+      <?php if($media_sponsor != null): ?>
+      <div class="media mt-32">
+          <div class="container pt-18 pb-18">
+          <div id="media-slide-homepage" class="media-wrapper flex flex-row col-gap-12">
+              <?php foreach($media_sponsor as $media_sponsor): ?>
+                  <div class="media-card flex flex-row">
+                      <img src="<?= base_url("/uploads/media/media_sponsor/$media_sponsor->media") ?>" alt="">
+                  </div>
+              <?php endforeach; ?>
+          </div>
+          </div>
+      </div>
+      <?php endif; ?>
 
       <?php if($pameran != null): ?>
       <div
@@ -183,6 +197,36 @@
               settings: {
                 infinite: true,
                 slidesToShow: 1,
+                slidesToScroll: 1,
+              }
+            }
+            ]
+          }
+        );
+        $("#media-slide-homepage").slick(
+          {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            variableWidth: true,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            responsive: [
+              {
+              breakpoint: 920,
+              settings: {
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              }
+              },{
+              breakpoint: 480,
+              settings: {
+                infinite: true,
+                slidesToShow: 1,
+                centerMode: true,
+                centerPadding: '40px',
                 slidesToScroll: 1,
               }
             }
