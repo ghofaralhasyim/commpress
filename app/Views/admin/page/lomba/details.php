@@ -67,6 +67,7 @@
                         <select name="type" id="type" class="form-control">
                             <option <?php if($lomba->type_submission == "video") echo 'selected'; ?> value="video">Video</option>
                             <option <?php if($lomba->type_submission == "image") echo 'selected'; ?> value="image">Image</option>
+                            <option <?php if($lomba->type_submission == "pdf") echo 'selected'; ?> value="pdf">PDF</option>
                             <option <?php if($lomba->type_submission == "text content") echo 'selected'; ?> value="text content">Text Content</option>
                         </select>
                     </div>

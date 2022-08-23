@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:locale" content="id_ID">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Commpress Information">
+<meta property="og:title" content="Commpress UMN">
 <meta property="og:url" content="https://www.commpress-umn.my.id">
 <meta property="og:site_name" content="Commpress UMN">
 <meta property="twitter:title" content="Commpress UMN">

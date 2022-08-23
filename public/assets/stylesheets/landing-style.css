@@ -154,6 +154,18 @@
   font-family: "Poppins-Light", sans-serif;
 }
 
+.media {
+  background: #fff;
+}
+.media-wrapper img {
+  max-width: 90px;
+}
+.media-card {
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-right: 1em;
+}
+
 .lomba {
   max-width: 100%;
   overflow: hidden;

@@ -16,7 +16,7 @@
                 </div>
             <?php endif; ?>
             <?= $lomba->description; ?>
-            <?php if(!$regist > 0) :?>
+            <?php if(!$regist > 0 && $lomba->status !== 'closed') :?>
             <h1 class="uppercase">DAFTAR </h1>
             <form action="<?php echo base_url(); ?>/member/lomba/regist" autocomplete="off" method="POST" enctype="multipart/form-data">
                 <input
@@ -145,11 +145,21 @@
                 </div>
                 <button class="button-primary mt-12" type="submit">Daftar</button>
             </form>    
-            <?php endif;?>       
+            <?php endif;?>
+            <?php if($lomba->status === 'closed'): ?>
+            <div class="full-width">
+                    <p class="full-width bg-gray notif p-12 f-14 ">
+                        Pendaftaran lomba <?= $lomba->name ?> belum dibuka. Untuk informasi lebih lanjut 
+                        <a href="https://www.instagram.com/ruang.indiependen/" targe="blank" class="text-red"> hubungi kami.</a>
+                    </a>
+                </p>
+            </div>
+            <?php endif; ?>     
         </div>
    </section>
 <?= $this->endSection() ?>
 
 <?= $this->section('script') ?>
+    <script language="JavaScript" type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="<?= base_url('assets/js/detailLomba.js'); ?>"></script>
 <?= $this->endSection() ?>

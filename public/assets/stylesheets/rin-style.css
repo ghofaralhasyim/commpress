@@ -1,0 +1,106 @@
+.text-dark {
+  color: #231f20;
+}
+
+.bg-dark {
+  background-color: #231f20;
+}
+
+.text-pink {
+  color: #ffefe7;
+}
+
+.bg-pink {
+  background-color: #ffefe7;
+}
+
+.text-red {
+  color: #c96262;
+}
+
+.bg-red {
+  background-color: #c96262;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.text-gray {
+  color: #d1d1d1;
+}
+
+.bg-gray {
+  background-color: #d1d1d1;
+}
+
+.text-yellow {
+  color: #ffcc81;
+}
+
+.bg-yellow {
+  background-color: #ffcc81;
+}
+
+.text-light-green {
+  color: #dbe3d1;
+}
+
+.bg-light-green {
+  background-color: #dbe3d1;
+}
+
+.text-green {
+  color: #6b9635;
+}
+
+.bg-green {
+  background-color: #6b9635;
+}
+
+.rin-container {
+  width: 100%;
+  height: 100%;
+  background: url("../img/rin-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-top: -10px;
+  padding-bottom: 10em;
+  color: #fff;
+}
+.rin-container .container {
+  width: 100%;
+  min-height: 60vh;
+}
+@media screen and (min-width: 64em) {
+  .rin-container .container {
+    height: 80%;
+  }
+}
+
+.btn {
+  width: 180px;
+  padding: 8px 0;
+  border: 1px solid #fff;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+}
+.btn:hover {
+  color: #222;
+  background-color: #fff;
+}
+
+.main-title {
+  font-size: 48px;
+  text-align: center;
+}
+
+.footer {
+  margin-top: -25px;
+}/*# sourceMappingURL=rin-style.css.map */

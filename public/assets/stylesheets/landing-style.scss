@@ -96,6 +96,22 @@
   }
 }
 
+.media {
+  background: #fff;
+  &-wrapper {
+    img {
+      max-width: 90px;
+    }
+  }
+
+  &-card {
+    padding: 4px 12px;
+    border-radius: 4px;
+
+    margin-right: 1em;
+  }
+}
+
 .lomba {
   max-width: 100%;
   overflow: hidden;

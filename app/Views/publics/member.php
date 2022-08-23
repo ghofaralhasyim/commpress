@@ -27,35 +27,48 @@
           <h1><?= $homepage_banner->description ?></h1>
         </div>
       </div>
+      
+      <?php if($media_sponsor != null): ?>
+      <div class="media mt-32">
+          <div class="container pt-18 pb-18">
+          <div id="media-slide-homepage" class="media-wrapper flex flex-row col-gap-12">
+              <?php foreach($media_sponsor as $media_sponsor): ?>
+                  <div class="media-card flex flex-row">
+                      <img src="<?= base_url("/uploads/media/media_sponsor/$media_sponsor->media") ?>" alt="">
+                  </div>
+              <?php endforeach; ?>
+          </div>
+          </div>
+      </div>
+      <?php endif; ?>
 
+      <?php if($pameran != null): ?>
       <div
-        class="lomba flex flex-col lg-flex-row col-gap-16 mt-48 lomba-container"
+        class="lomba flex flex-col lg-flex-row col-gap-16 mt-32 lomba-container"
       >
         <div class="section-title flex flex-row lg-flex-col fg-1">
           <div class="flex flex-col">
-            <span class="f-italiana f-32 f--bold">LOMBA</span>
+            <span class="f-italiana f-32 f--bold">Ruang Indiependen</span>
             <p>
-              Pilih diantara <span class="f--bold">6 lomba</span>
-              dan jadilah yang terbaik!
+              Tunjukan karya terbaikmu!
             </p>
           </div>
           <div class="button-section">
             <a href="<?= base_url('/member/submission') ?>" class="button-primary">Lihat Pendaftaran</a>
           </div>
         </div>
-        <div id="lomba-slide-homepage" class="slick-js">
-          <?php foreach ($lomba as $lomba) : ?>
-            <?php if($lomba->status != 'closed'): ?>
-              <a href="<?= base_url("/member/lomba/$lomba->slug"); ?>" style="text-decoration: none; color:#000;">
+        <div id="pameran-slide-homepage" class="slick-js">
+          <?php foreach ($pameran as $pameran) : ?>
+              <a href="<?= base_url("/member/pameran/$pameran->slug"); ?>" style="text-decoration: none; color:#000;">
               <div class="card">
-                <img src="<?= base_url("/uploads/media/lomba/thumbnail/$lomba->media"); ?>" alt="image" />
-                <div class="card-text p-16 f--light"><?= $lomba->name; ?></div>
+                <img src="<?= base_url("/uploads/media/pameran/thumbnail/$pameran->thumbnail"); ?>" alt="image" />
+                <div class="card-text p-16 f--light"><?= $pameran->name; ?></div>
               </div>
               </a>
-            <?php endif; ?>
           <?php endforeach;?>
         </div>
       </div>
+      <?php endif;?>
 
       <div class="pesan mt-24 pesan-container">
         <h1 class="full-width">PESAN UNTUK KAMU</h1>
@@ -94,13 +107,13 @@
       </div>
       <?php endif; ?>
 
-      <?php if($pameran != null): ?>
+      <?php if($lomba != null): ?>
       <div
-        class="lomba flex flex-col lg-flex-row col-gap-16 mt-32 lomba-container"
+        class="lomba flex flex-col lg-flex-row col-gap-16 mt-48 lomba-container"
       >
         <div class="section-title flex flex-row lg-flex-col fg-1">
           <div class="flex flex-col">
-            <span class="f-italiana f-32 f--bold">Rua ng Indiependen</span>
+            <span class="f-italiana f-32 f--bold">LOMBA</span>
             <p>
               Pilih diantara <span class="f--bold">6 lomba</span>
               dan jadilah yang terbaik!
@@ -110,18 +123,18 @@
             <a href="<?= base_url('/member/submission') ?>" class="button-primary">Lihat Pendaftaran</a>
           </div>
         </div>
-        <div id="pameran-slide-homepage" class="slick-js">
-          <?php foreach ($pameran as $pameran) : ?>
-              <a href="<?= base_url("/member/pameran/$pameran->slug"); ?>" style="text-decoration: none; color:#000;">
+        <div id="lomba-slide-homepage" class="slick-js">
+          <?php foreach ($lomba as $lomba) : ?>
+              <a href="<?= base_url("/member/lomba/$lomba->slug"); ?>" style="text-decoration: none; color:#000;">
               <div class="card">
-                <img src="<?= base_url("/uploads/media/pameran/thumbnail/$pameran->thumbnail"); ?>" alt="image" />
-                <div class="card-text p-16 f--light"><?= $pameran->name; ?></div>
+                <img src="<?= base_url("/uploads/media/lomba/thumbnail/$lomba->media"); ?>" alt="image" />
+                <div class="card-text p-16 f--light"><?= $lomba->name; ?></div>
               </div>
               </a>
           <?php endforeach;?>
         </div>
       </div>
-      <?php endif;?>
+      <?php endif; ?>
 
     </section>
     
@@ -184,6 +197,36 @@
               settings: {
                 infinite: true,
                 slidesToShow: 1,
+                slidesToScroll: 1,
+              }
+            }
+            ]
+          }
+        );
+        $("#media-slide-homepage").slick(
+          {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            variableWidth: true,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            responsive: [
+              {
+              breakpoint: 920,
+              settings: {
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              }
+              },{
+              breakpoint: 480,
+              settings: {
+                infinite: true,
+                slidesToShow: 1,
+                centerMode: true,
+                centerPadding: '40px',
                 slidesToScroll: 1,
               }
             }

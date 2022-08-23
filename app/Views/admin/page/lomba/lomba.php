@@ -54,6 +54,7 @@
                 <select name="type" id="type" class="form-control">
                     <option value="image">Image</option>
                     <option value="video">Video</option>
+                    <option value="pdf">PDF</option>
                     <option value="text content">Text Content</option>
                 </select>
             </div>

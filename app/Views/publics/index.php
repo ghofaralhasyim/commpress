@@ -40,6 +40,18 @@
             </div>
         </section>
 
+        <section class="media ">
+            <div class="container pt-18 pb-18">
+            <div id="media-slide-homepage" class="media-wrapper flex flex-row col-gap-12">
+                <?php foreach($media_sponsor as $media_sponsor): ?>
+                    <div class="media-card flex flex-row">
+                        <img src="<?= base_url("/uploads/media/media_sponsor/$media_sponsor->media") ?>" alt="">
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            </div>
+        </section>
+
         <section class="section-2 container pb-18">
             <div
                 class="lomba flex flex-col lg-flex-row col-gap-16 mt-48 lomba-container"
@@ -119,7 +131,7 @@
             arrows: false,
             variableWidth: true,
             infinite: true,
-            speed: 300,
+            speed: 100,
             responsive: [
               {
               breakpoint: 920,
@@ -133,6 +145,36 @@
               settings: {
                 infinite: true,
                 slidesToShow: 1,
+                slidesToScroll: 1,
+              }
+            }
+            ]
+          }
+        );
+        $("#media-slide-homepage").slick(
+          {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            variableWidth: true,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            responsive: [
+              {
+              breakpoint: 920,
+              settings: {
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              }
+              },{
+              breakpoint: 480,
+              settings: {
+                infinite: true,
+                slidesToShow: 1,
+                centerMode: true,
+                centerPadding: '40px',
                 slidesToScroll: 1,
               }
             }

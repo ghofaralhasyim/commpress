@@ -138,6 +138,22 @@
                         <span class="text-red text-small mt-8"><?= session()->getflashdata('title'); ?></span>
                     <?php endif; ?>
                 </div>
+                <?php if(strtolower($pameran->type_submission) === 'video' || strtolower($pameran->type_submission) === 'pdf' || 
+                    strtolower($pameran->type_submission) === 'audio' || strtolower($pameran->slug) === 'info-grafik'):?>
+                 <div class="flex flex-col input-group mt-12">
+                        <label for="thumbnail" class="mb-8">Thumbnail<span class="text-red">*</span></label>
+                        <input
+                            id="thumbnail" name="thumbnail"
+                            type="file"
+                            class="form-input full-width"
+                            value="<?= old('thumbnail'); ?>"
+                        />
+                        <span class="text-small">File size max. 1MB</span>
+                        <?php if (session()->getFlashdata('thumbnail')) : ?>
+                            <span class="text-red text-small mt-8"><?= session()->getflashdata('thumbnail'); ?></span>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
                 <?php if(strtolower($pameran->type_submission) === 'video'): ?>
                     <div class="input-group flex flex-col mt-12">
                     <label for="url" class="mb-8">ID video youtube<span class="text-red">*</span></label>

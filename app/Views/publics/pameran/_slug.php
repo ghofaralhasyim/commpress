@@ -36,6 +36,13 @@
                     value="<?= $pameran->id_pameran ?>"
                 />
                 <div class="input-group flex flex-col">
+                    <label for="category_member" class="mb-8">Kategory Peserta<span class="text-red">*</span></label>
+                    <select name="category_member" id="category_member" class="form-input">
+                        <option value="mahasiswa" <?php if(old('category_member') === 'mahasiswa') echo 'selected'; ?>>mahasiswa</option>
+                        <option value="umum" <?php if(old('category_member') === 'umum') echo 'selected'; ?>>umum</option>
+                    </select>
+                </div>
+                <div class="input-group flex flex-col mt-12">
                 <label for="name" class="mb-8">Nama<span class="text-red">*</span></label>
                     <input
                         id="name" name="name"
@@ -45,7 +52,7 @@
                         disabled
                     />
                 </div>
-                <div class="input-group flex flex-col">
+                <div class="input-group flex flex-col mt-12">
                 <label for="email" class="mb-8">Email<span class="text-red">*</span></label>
                     <input
                         id="email" name="email"
@@ -55,8 +62,8 @@
                         disabled
                     />
                 </div>
-                <div class="input-group flex flex-col mt-12">
-                    <label for="univ" class="mb-8">Asal Universitas<span class="text-red">*</span></label>
+                <div id="fieldUniv" class="input-group flex flex-col mt-12">
+                    <label for="univ" class="mb-8">Asal Universitas<span class="text-red"> *</span></label>
                     <input
                         id="univ" name="univ"
                         type="text"
@@ -64,6 +71,7 @@
                         value="<?php if($user->univ){echo $user->univ;}else{echo old('univ');} ?>"
                         placeholder="Universitas Multimedia Nusantara"
                     />
+                    <span class="text-small text-grey mt-8">Ditulis lengkap. Contoh: Universitas Multimedia Nusantara</span> 
                     <?php if (session()->getFlashdata('univ')) : ?>
                         <span class="text-red text-small mt-8"><?= session()->getflashdata('univ'); ?></span>
                     <?php endif; ?>
@@ -121,6 +129,26 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('script') ?>
+    <?php if($regist < 1): ?>
     <script language="JavaScript" type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="<?= base_url('assets/js/detailLomba.js'); ?>"></script>
+    <script language="JavaScript" type="text/javascript" src="<?= base_url('assets/js/detailLomba.js'); ?>"></script>
+    <script language="JavaScript" type="text/javascript">
+        const fieldUniv = document.getElementById('fieldUniv')
+        const category_member = document.getElementById('category_member')
+
+        $(document).ready(function () {
+            if (category_member.value.toLowerCase() == 'umum') {
+                fieldUniv.classList.toggle('d-none');
+            }
+        })
+
+       $('#category_member').on('change', function() {
+            if (this.value.toLowerCase() == 'mahasiswa') {
+                fieldUniv.classList.toggle('d-none');
+            } else {
+                fieldUniv.classList.add('d-none');
+            }
+        });
+    </script>
+    <?php endif;?>
 <?= $this->endSection() ?>

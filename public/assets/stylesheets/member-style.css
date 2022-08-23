@@ -206,6 +206,19 @@ body {
   );
 }
 
+.media {
+  background: #fff;
+}
+
+.media-wrapper img {
+  max-width: 90px;
+}
+.media-card {
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-right: 1em;
+}
+
 .media-container {
   max-width: 93%;
   position: relative;
